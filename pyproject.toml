@@ -19,5 +19,12 @@ dev = [
     "types-requests>=2.0",
 ]
 
+[project.scripts]
+fixtura = "cli.main:main"
+
+[tool.setuptools]
+packages = ["recorder", "replay", "security", "tools", "cli"]
+
 [tool.mypy]
 strict = true
+
