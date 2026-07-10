@@ -1,8 +1,0 @@
-pydantic<3.0,>=2.0
-requests<3.0,>=2.0
-zstandard<1.0,>=0.20
-
-[dev]
-pytest>=7.0
-mypy>=1.0
-types-requests>=2.0
