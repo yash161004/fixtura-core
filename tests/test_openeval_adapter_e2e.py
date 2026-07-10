@@ -286,7 +286,7 @@ import sys
 import importlib
 import pytest
 
-def test_openeval_import_failure():
+def test_openeval_import_failure() -> None:
     # Save the original module if it exists
     saved_modules = {}
     for k in list(sys.modules.keys()):
@@ -294,7 +294,7 @@ def test_openeval_import_failure():
             saved_modules[k] = sys.modules.pop(k)
     
     # Force sys.modules to say openeval is None, simulating it not being installed
-    sys.modules['openeval'] = None
+    sys.modules['openeval'] = None  # type: ignore
     
     try:
         # We need to remove the already imported openeval_adapter to force a reload
