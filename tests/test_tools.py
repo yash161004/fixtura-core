@@ -1,3 +1,4 @@
+from security.rate_limiter import RateLimiter
 import os
 import sqlite3
 import pytest
@@ -13,7 +14,7 @@ def test_filesystem_schema_validation() -> None:
     token = CapabilityToken()
     
     # Missing required 'operation' and 'path'
-    res = tool.execute(token, {})
+    res = tool.execute(token, {}, rate_limiter=RateLimiter())
     assert res.outcome == "validation_error"
     assert res.error is not None
     assert "operation" in res.error
@@ -28,12 +29,12 @@ def test_filesystem_sandbox_traversal(tmp_path: Path) -> None:
     
     # Valid write
     valid_file = tmp_path / "test.txt"
-    res = tool.execute(token, {"operation": "write", "path": str(valid_file), "content": "data"})
+    res = tool.execute(token, {"operation": "write", "path": str(valid_file), "content": "data"}, rate_limiter=RateLimiter())
     assert res.outcome == "executed"
     
     # Path traversal attempt
     traversal_path = tmp_path / ".." / "etc" / "passwd"
-    res = tool.execute(token, {"operation": "write", "path": str(traversal_path), "content": "data"})
+    res = tool.execute(token, {"operation": "write", "path": str(traversal_path), "content": "data"}, rate_limiter=RateLimiter())
     assert res.outcome == "executed"
     assert res.error is not None
     assert "outside sandbox" in res.error
@@ -55,7 +56,7 @@ def test_filesystem_symlink_escape(tmp_path: Path) -> None:
     except OSError:
         pytest.skip("Symlinks not supported on this OS/filesystem")
         
-    res = tool.execute(token, {"operation": "read", "path": str(symlink_path / "secret.txt")})
+    res = tool.execute(token, {"operation": "read", "path": str(symlink_path / "secret.txt")}, rate_limiter=RateLimiter())
     assert res.outcome == "executed"
     assert res.error is not None
     assert "outside sandbox" in res.error
@@ -64,7 +65,7 @@ def test_sqlite_schema_validation() -> None:
     tool = SqliteTool(db_path=":memory:")
     token = CapabilityToken()
     
-    res = tool.execute(token, {"query": "SELECT 1"})
+    res = tool.execute(token, {"query": "SELECT 1"}, rate_limiter=RateLimiter())
     assert res.outcome == "validation_error"
     assert res.error is not None
     assert "operation" in res.error
@@ -86,7 +87,7 @@ def test_sqlite_injection_neutralization(tmp_path: Path) -> None:
         "operation": "read", 
         "query": "SELECT * FROM users WHERE name = ?", 
         "parameters": [injection_payload]
-    })
+    }, rate_limiter=RateLimiter())
     
     assert res.outcome == "executed"
     assert res.result is not None
@@ -107,7 +108,7 @@ def test_http_allowlist(monkeypatch: pytest.MonkeyPatch) -> None:
         
     monkeypatch.setattr("requests.request", mock_request)
     
-    res = tool.execute(token, {"method": "GET", "url": "https://malicious.com"})
+    res = tool.execute(token, {"method": "GET", "url": "https://malicious.com"}, rate_limiter=RateLimiter())
     assert res.outcome == "permission_denied"
 
 def test_http_ssrf_protection() -> None:
@@ -115,13 +116,13 @@ def test_http_ssrf_protection() -> None:
     token = CapabilityToken(http=HttpCapability(allowed_domains=["127.0.0.1", "localhost", "example.com"]))
     
     # 127.0.0.1 is private/loopback
-    res = tool.execute(token, {"method": "GET", "url": "http://127.0.0.1/admin"})
+    res = tool.execute(token, {"method": "GET", "url": "http://127.0.0.1/admin"}, rate_limiter=RateLimiter())
     assert res.outcome == "executed"
     assert res.error is not None
     assert "private/loopback" in res.error
     
     # localhost resolves to 127.0.0.1
-    res = tool.execute(token, {"method": "GET", "url": "http://localhost/admin"})
+    res = tool.execute(token, {"method": "GET", "url": "http://localhost/admin"}, rate_limiter=RateLimiter())
     assert res.outcome == "executed"
     assert res.error is not None
     assert "private/loopback" in res.error
@@ -149,7 +150,7 @@ def test_http_dns_rebinding(monkeypatch: pytest.MonkeyPatch) -> None:
         
     monkeypatch.setattr("urllib3.util.connection.create_connection", mock_create_connection)
     
-    res = tool.execute(token, {"method": "GET", "url": "http://rebind.example.com/"})
+    res = tool.execute(token, {"method": "GET", "url": "http://rebind.example.com/"}, rate_limiter=RateLimiter())
     
     assert res.outcome == "executed"
     assert res.error is not None
@@ -179,7 +180,7 @@ def test_http_concurrency(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr("urllib3.util.connection.create_connection", mock_create_connection)
     
     def fetch(domain: str) -> str:
-        res = tool.execute(token, {"method": "GET", "url": f"http://{domain}/"})
+        res = tool.execute(token, {"method": "GET", "url": f"http://{domain}/"}, rate_limiter=RateLimiter())
         return res.error or ""
         
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
