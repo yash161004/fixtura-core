@@ -34,14 +34,14 @@ The core assumption: **LLM-generated tool call arguments are untrusted input**, 
 | Unauthorized tool invocation (agent does something it shouldn't) | Permission Engine checks every call against a capability-scoped token; denials are still recorded, not silently dropped |
 | Secrets/PII leaking into persisted trace files | Sanitizer redact/truncate policy runs before any write to storage (see ARCHITECTURE.md) |
 | Replay accidentally executing real side effects (double-write, duplicate API call) | Replay Runtime never invokes the real Tool Executor — every LLM completion and tool response is substituted from the recording, full stop |
-| Runaway agent loop hammering a real tool | v1: out of scope, documented as a known gap. v1.1: rate limiting / circuit breaker per tool |
+| Runaway agent loop hammering a real tool | Cross-cutting rate limiter per-session and per-time-window, plus consecutive-failure circuit breaker to abort tool usage automatically. |
 
 ## Explicitly out of scope for v1
 
 - Enterprise-grade DLP (the sanitizer is a stated, simple redact/truncate policy — not a claim of comprehensive data-loss prevention)
 - Multi-tenant isolation (single-user/single-session assumption for v1)
 - Formal verification of the permission engine (property-based/adversarial testing is a stretch goal, not a v1 commitment)
-- Cross-platform native verification of path traversal defenses (specifically: symlink-based escape vectors are skipped on Windows and currently remain unverified on Linux/CI hardware)
+- Cross-platform native verification of path traversal defenses (specifically: symlink-based escape vectors are skipped on Windows but are now natively verified on Ubuntu CI runners [Run ID: 29064515592, Date: 2026-07-10])
 
 Stating these explicitly is intentional — a threat model that claims to solve everything is less credible than one that names its real boundaries.
 

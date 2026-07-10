@@ -55,8 +55,10 @@ def run(trace_path: str) -> None:
         "timestamp": 200.0,
         "tool_name": "filesystem_tool",
         "arguments": args,
-        "permission_decision": "allowed" if res.outcome == "executed" else "denied",
+        "permission_decision": "allowed" if res.outcome not in ("permission_denied", "validation_error") else "denied",
         "permission_reason": res.reason if res.outcome == "permission_denied" else None,
+        "rate_limit_decision": "rate_limited" if res.outcome == "rate_limited" else ("circuit_broken" if res.outcome == "circuit_broken" else "allowed"),
+        "rate_limit_reason": res.reason if res.outcome in ("rate_limited", "circuit_broken") else None,
         "response": res.result,
         "latency_ms": 50
     })
@@ -69,8 +71,10 @@ def run(trace_path: str) -> None:
         "timestamp": 300.0,
         "tool_name": "sqlite_tool",
         "arguments": args,
-        "permission_decision": "allowed" if res.outcome == "executed" else "denied",
+        "permission_decision": "allowed" if res.outcome not in ("permission_denied", "validation_error") else "denied",
         "permission_reason": res.reason if res.outcome == "permission_denied" else None,
+        "rate_limit_decision": "rate_limited" if res.outcome == "rate_limited" else ("circuit_broken" if res.outcome == "circuit_broken" else "allowed"),
+        "rate_limit_reason": res.reason if res.outcome in ("rate_limited", "circuit_broken") else None,
         "response": res.result,
         "latency_ms": 50
     })
@@ -85,8 +89,10 @@ def run(trace_path: str) -> None:
         "timestamp": 400.0,
         "tool_name": "http_tool",
         "arguments": args,
-        "permission_decision": "allowed" if res.outcome == "executed" else "denied",
+        "permission_decision": "allowed" if res.outcome not in ("permission_denied", "validation_error") else "denied",
         "permission_reason": res.reason if res.outcome == "permission_denied" else None,
+        "rate_limit_decision": "rate_limited" if res.outcome == "rate_limited" else ("circuit_broken" if res.outcome == "circuit_broken" else "allowed"),
+        "rate_limit_reason": res.reason if res.outcome in ("rate_limited", "circuit_broken") else None,
         "response": res.result,
         "latency_ms": 50
     })
