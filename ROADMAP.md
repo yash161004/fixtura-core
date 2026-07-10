@@ -27,6 +27,7 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 - Rate limiting / circuit breakers
 - Advanced metrics
 - **Retrospective / Security Review:** Completed. AGENTS.md autonomous bindings have been officially restricted to read-only operations for v1.1.
+- **CI Setup / Symlink Verification:** Completed. GitHub Actions workflow established and path traversal symlink defense natively verified on Linux.
 
 ## v2 — Future work, not scoped in detail
 

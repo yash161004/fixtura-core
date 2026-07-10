@@ -2,6 +2,7 @@ import os
 import sqlite3
 
 from security.permission_engine import CapabilityToken
+from security.rate_limiter import RateLimiter
 from recorder.recorder import ExecutionRecorder
 from tools.filesystem_tool import FilesystemTool
 from tools.sqlite_tool import SqliteTool
@@ -20,6 +21,8 @@ def run(trace_path: str) -> None:
     token.filesystem.write = [os.getcwd()]
     token.http.allowed_domains = ["example.com"]
     # No DB permissions given
+    
+    rate_limiter = RateLimiter()
     
     fs_tool = FilesystemTool(sandbox_root=os.getcwd())
     
@@ -49,7 +52,7 @@ def run(trace_path: str) -> None:
         f.write("test_content secret-sk-12345678901234567890")
     
     args = {"operation": "read", "path": os.path.abspath("test.txt")}
-    res = fs_tool.execute(token, args)
+    res = fs_tool.execute(token, args, rate_limiter=rate_limiter)
     recorder.record_event({
         "event_type": "tool_call",
         "timestamp": 200.0,
@@ -65,7 +68,7 @@ def run(trace_path: str) -> None:
         
     # 3. DB Tool (Should be denied)
     args = {"operation": "read", "query": "SELECT * FROM test"}
-    res = db_tool.execute(token, args)
+    res = db_tool.execute(token, args, rate_limiter=rate_limiter)
     recorder.record_event({
         "event_type": "tool_call",
         "timestamp": 300.0,
@@ -83,7 +86,7 @@ def run(trace_path: str) -> None:
     # or we can pass an allowed one. The prompt says "at least one allowed and one denied". 
     # I'll pass a denied one to match the OpenEval adapter test expectation of missing tools)
     args = {"url": "http://disallowed.com"}
-    res = http_tool.execute(token, args)
+    res = http_tool.execute(token, args, rate_limiter=rate_limiter)
     recorder.record_event({
         "event_type": "tool_call",
         "timestamp": 400.0,

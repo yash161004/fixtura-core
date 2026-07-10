@@ -1,4 +1,5 @@
 import pytest
+from pathlib import Path
 from typing import Any, Dict
 from pydantic import BaseModel
 from security.rate_limiter import RateLimiter, RateLimiterConfig
@@ -103,3 +104,59 @@ def test_circuit_breaker(monkeypatch: pytest.MonkeyPatch) -> None:
     res_trip = tool_success.execute(token, {}, rate_limiter=limiter)
     assert res_trip.outcome == "circuit_broken"
     assert "Circuit breaker tripped" in str(res_trip.reason)
+
+def test_e2e_rate_limit_recording(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    from recorder.recorder import ExecutionRecorder
+    from recorder.trace_reader import TraceReader
+    
+    monkeypatch.setattr("tools.base_tool.check", lambda token, name, args: ("executed", ""))
+    config = RateLimiterConfig(max_calls_per_session=1)
+    limiter = RateLimiter(config=config)
+    tool = DummyTool()
+    token = CapabilityToken()
+    
+    trace_path = tmp_path / "test.trace"
+    recorder = ExecutionRecorder(trace_path)
+    
+    # 1st call (Allowed)
+    res1 = tool.execute(token, {}, rate_limiter=limiter)
+    recorder.record_event({
+        "event_type": "tool_call",
+        "timestamp": 100.0,
+        "tool_name": tool.name,
+        "arguments": {},
+        "permission_decision": "allowed",
+        "permission_reason": None,
+        "rate_limit_decision": "rate_limited" if res1.outcome == "rate_limited" else ("circuit_broken" if res1.outcome == "circuit_broken" else "allowed"),
+        "rate_limit_reason": res1.reason if res1.outcome in ("rate_limited", "circuit_broken") else None,
+        "response": res1.result,
+        "latency_ms": 10
+    })
+    
+    # 2nd call (Rate limited)
+    res2 = tool.execute(token, {}, rate_limiter=limiter)
+    recorder.record_event({
+        "event_type": "tool_call",
+        "timestamp": 200.0,
+        "tool_name": tool.name,
+        "arguments": {},
+        "permission_decision": "allowed",
+        "permission_reason": None,
+        "rate_limit_decision": "rate_limited" if res2.outcome == "rate_limited" else ("circuit_broken" if res2.outcome == "circuit_broken" else "allowed"),
+        "rate_limit_reason": res2.reason if res2.outcome in ("rate_limited", "circuit_broken") else None,
+        "response": res2.result,
+        "latency_ms": 10
+    })
+    
+    # Read the trace back
+    reader = TraceReader(trace_path)
+    events = list(reader.read_events())
+    assert len(events) == 2
+    
+    # Assert call 1
+    assert events[0]["rate_limit_decision"] == "allowed"
+    assert events[0]["rate_limit_reason"] is None
+    
+    # Assert call 2
+    assert events[1]["rate_limit_decision"] == "rate_limited"
+    assert "Session limit" in str(events[1]["rate_limit_reason"])

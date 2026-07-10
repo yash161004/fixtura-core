@@ -14,7 +14,7 @@ class BaseTool:
     is_reversible: bool
     schema_cls: Type[BaseModel]
     
-    def execute(self, capability_token: CapabilityToken, arguments: Dict[str, Any], rate_limiter: Optional[RateLimiter] = None) -> ToolResult:
+    def execute(self, capability_token: CapabilityToken, arguments: Dict[str, Any], rate_limiter: RateLimiter) -> ToolResult:
         # Schema validation (pydantic) runs first
         try:
             validated = self.schema_cls(**arguments)
@@ -28,21 +28,18 @@ class BaseTool:
         elif status == "validation_error":
             return ToolResult(outcome="validation_error", error=reason)
             
-        # Enforce rate limit and circuit breaker if configured
-        if rate_limiter:
-            rl_status, rl_reason = rate_limiter.check(self.name)
-            if rl_status != "allowed":
-                return ToolResult(outcome=rl_status, reason=rl_reason)
+        # Enforce rate limit and circuit breaker
+        rl_status, rl_reason = rate_limiter.check(self.name)
+        if rl_status != "allowed":
+            return ToolResult(outcome=rl_status, reason=rl_reason)
             
         # Execute tool
         try:
             result = self._run(validated)
-            if rate_limiter:
-                rate_limiter.record_execution(self.name, success=True)
+            rate_limiter.record_execution(self.name, success=True)
             return ToolResult(outcome="executed", result=result)
         except Exception as e:
-            if rate_limiter:
-                rate_limiter.record_execution(self.name, success=False)
+            rate_limiter.record_execution(self.name, success=False)
             # We treat execution error as "executed" but with an error payload.
             return ToolResult(outcome="executed", error=str(e))
             
