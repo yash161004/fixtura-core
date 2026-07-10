@@ -7,7 +7,7 @@ from tools.filesystem_tool import FilesystemTool
 from tools.sqlite_tool import SqliteTool
 from tools.http_tool import HttpTool
 
-def run(trace_path: str):
+def run(trace_path: str) -> None:
     print(f"Recording canonical test trace to {trace_path}...")
     
     if os.path.exists(trace_path):

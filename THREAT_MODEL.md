@@ -41,6 +41,7 @@ The core assumption: **LLM-generated tool call arguments are untrusted input**, 
 - Enterprise-grade DLP (the sanitizer is a stated, simple redact/truncate policy — not a claim of comprehensive data-loss prevention)
 - Multi-tenant isolation (single-user/single-session assumption for v1)
 - Formal verification of the permission engine (property-based/adversarial testing is a stretch goal, not a v1 commitment)
+- Cross-platform native verification of path traversal defenses (specifically: symlink-based escape vectors are skipped on Windows and currently remain unverified on Linux/CI hardware)
 
 Stating these explicitly is intentional — a threat model that claims to solve everything is less credible than one that names its real boundaries.
 

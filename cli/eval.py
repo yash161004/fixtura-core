@@ -6,7 +6,7 @@ from openeval.runner import run_eval
 from openeval.models import EvalTestCase
 from openeval.metrics import ToolSelectionAccuracy, ArgumentCorrectness, StepEfficiency, GoalCompletionRate
 
-def run(trace_path: str):
+def run(trace_path: str) -> None:
     print(f"Scoring {trace_path} via OpenEval adapter...")
     metrics = [
         ToolSelectionAccuracy(),

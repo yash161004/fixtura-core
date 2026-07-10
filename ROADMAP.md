@@ -26,6 +26,7 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 - Automatic failure classification (Layer 1 infra failures only are automatic; Layer 2–4 require benchmark-defined expected trajectories or manual review)
 - Rate limiting / circuit breakers
 - Advanced metrics
+- **Retrospective / Security Review:** Completed. AGENTS.md autonomous bindings have been officially restricted to read-only operations for v1.1.
 
 ## v2 — Future work, not scoped in detail
 

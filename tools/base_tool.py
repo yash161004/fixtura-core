@@ -22,9 +22,11 @@ class BaseTool:
             return ToolResult(outcome="validation_error", error=str(e))
             
         # check() runs on validated arguments
-        allowed, reason = check(capability_token, self.name, validated.model_dump())
-        if not allowed:
+        status, reason = check(capability_token, self.name, validated.model_dump())
+        if status == "permission_denied":
             return ToolResult(outcome="permission_denied", reason=reason)
+        elif status == "validation_error":
+            return ToolResult(outcome="validation_error", error=reason)
             
         # Execute tool
         try:

@@ -17,8 +17,8 @@ def trace_to_agent_trace(
     task_id: str, 
     input_text: str, 
     final_output: str, 
-    actual_state: dict,
-    metadata: dict = None
+    actual_state: dict[str, Any],
+    metadata: dict[str, Any] | None = None
 ) -> AgentTrace:
     """
     Converts a Fixtura .trace file into an OpenEval AgentTrace.

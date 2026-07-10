@@ -22,7 +22,7 @@ def truncate(text: str, max_len: int = 500) -> str:
         return s[:max_len] + f"... {DIM}[truncated {len(s) - max_len} chars]{RESET}"
     return s
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Minimal Trace Viewer for Fixtura .trace files")
     parser.add_argument("trace_file", type=str, help="Path to the .trace file")
     args = parser.parse_args()
@@ -73,9 +73,9 @@ def main():
             completion = event.get("completion", "")
             
             print(f"  {BOLD}Content / Prompt:{RESET}")
-            print(f"    {truncate(prompt)}")
+            print(f"    {truncate(str(prompt) if prompt is not None else '')}")
             print(f"  {BOLD}Response / Completion:{RESET}")
-            print(f"    {truncate(completion)}")
+            print(f"    {truncate(str(completion) if completion is not None else '')}")
 
         elif event_type == "tool_call":
             tool_name = event.get("tool_name", "unknown")
@@ -95,9 +95,9 @@ def main():
                 content = event.get("response")
                 
             print(f"  {BOLD}Content / Arguments:{RESET}")
-            print(f"    {truncate(args_str)}")
+            print(f"    {truncate(str(args_str) if args_str is not None else '')}")
             print(f"  {BOLD}Response / Result:{RESET}")
-            print(f"    {truncate(content)}")
+            print(f"    {truncate(str(content) if content is not None else '')}")
 
         print("-" * 80)
 

@@ -10,7 +10,7 @@ from openeval.models import EvalTestCase
 from openeval.metrics import ToolSelectionAccuracy, ArgumentCorrectness, StepEfficiency, GoalCompletionRate
 from security.permission_engine import CapabilityToken, check
 
-def generate_simple_trace(trace_path: str):
+def generate_simple_trace(trace_path: str) -> None:
     if os.path.exists(trace_path):
         os.remove(trace_path)
     recorder = ExecutionRecorder(trace_path)
@@ -54,7 +54,7 @@ def generate_simple_trace(trace_path: str):
         "latency_ms": 400
     })
 
-def generate_failed_trace(trace_path: str):
+def generate_failed_trace(trace_path: str) -> None:
     if os.path.exists(trace_path):
         os.remove(trace_path)
     recorder = ExecutionRecorder(trace_path)
@@ -65,15 +65,16 @@ def generate_failed_trace(trace_path: str):
     tool1_name = "filesystem_tool"
     tool1_args = {"operation": "read", "path": "critical.sys"}
     allowed1, reason1 = check(token, tool1_name, tool1_args)
+    assert allowed1 == "permission_denied"
     
     recorder.record_event({
         "event_type": "tool_call",
         "timestamp": 2001.0,
         "tool_name": tool1_name,
         "arguments": tool1_args,
-        "permission_decision": "allowed" if allowed1 else "denied",
-        "permission_reason": reason1 if not allowed1 else None,
-        "response": "Success" if allowed1 else None,
+        "permission_decision": "denied",
+        "permission_reason": reason1,
+        "response": None,
         "latency_ms": 50
     })
     
@@ -84,19 +85,20 @@ def generate_failed_trace(trace_path: str):
     tool2_name = "http_tool"
     tool2_args = {"url": "http://api.example.com/search?q=goodbye"}
     allowed2, reason2 = check(token, tool2_name, tool2_args)
+    assert allowed2 == "executed"
     
     recorder.record_event({
         "event_type": "tool_call",
         "timestamp": 2002.0,
         "tool_name": tool2_name,
         "arguments": tool2_args,
-        "permission_decision": "allowed" if allowed2 else "denied",
-        "permission_reason": reason2 if not allowed2 else None,
+        "permission_decision": "allowed",
+        "permission_reason": None,
         "response": "No results",
         "latency_ms": 150
     })
 
-def main():
+def test_openeval_consistency() -> None:
     metrics = [
         ToolSelectionAccuracy(),
         ArgumentCorrectness(),
@@ -104,10 +106,6 @@ def main():
         GoalCompletionRate()
     ]
     
-    # TEST 1: Simple run
-    print("="*60)
-    print("TEST 1: Simple Agent Run")
-    print("="*60)
     simple_trace_path = "simple.trace"
     generate_simple_trace(simple_trace_path)
     
@@ -130,13 +128,18 @@ def main():
     )
     
     res1 = run_eval(trace1, tc1, metrics)
-    print("Raw output for simple run:")
-    pprint(res1)
+    res2 = run_eval(trace1, tc1, metrics)
     
-    # TEST 2: Failed/Denied Run
-    print("\n" + "="*60)
-    print("TEST 2: Trace with Denied Call & Bad Argument")
-    print("="*60)
+    assert res1 == res2, "OpenEval adapter must produce consistent trajectory-level results across runs"
+
+def test_denied_tool_call_scoring() -> None:
+    metrics = [
+        ToolSelectionAccuracy(),
+        ArgumentCorrectness(),
+        StepEfficiency(),
+        GoalCompletionRate()
+    ]
+    
     failed_trace_path = "failed.trace"
     generate_failed_trace(failed_trace_path)
     
@@ -162,24 +165,120 @@ def main():
     )
     
     res2 = run_eval(trace2, tc2, metrics)
-    print("Raw output for failed run:")
-    pprint(res2)
     
-    print("\nVerification for Test 2:")
     ts_score = res2["metrics"]["Tool Selection Accuracy"].score
     ac_score = res2["metrics"]["Argument Correctness"].score
     
-    print(f"Does ToolSelectionAccuracy correctly NOT count the denied call? Score: {ts_score}")
-    if ts_score == 0.5:
-        print("  -> YES (Score is 0.5 because http_tool was called, but filesystem_tool was hidden as expected).")
-    else:
-        print("  -> NO (Expected 0.5)")
-        
-    print(f"Does ArgumentCorrectness correctly score the bad argument as wrong? Score: {ac_score}")
-    if ac_score == 0.0:
-        print("  -> YES (Score is 0.0 because 'http_tool' was evaluated but the argument didn't match).")
-    else:
-        print("  -> NO (Expected 0.0)")
+    assert ts_score == 0.5
+    assert ac_score == 0.0
 
-if __name__ == "__main__":
-    main()
+def generate_complex_trace(trace_path: str) -> None:
+    if os.path.exists(trace_path):
+        os.remove(trace_path)
+    recorder = ExecutionRecorder(trace_path)
+    
+    recorder.record_event({
+        "event_type": "tool_call",
+        "timestamp": 3001.0,
+        "tool_name": "http_tool",
+        "arguments": {"url": "http://api.example.com/start"},
+        "permission_decision": "allowed",
+        "permission_reason": None,
+        "response": "OK",
+        "latency_ms": 50
+    })
+    recorder.record_event({
+        "event_type": "tool_call",
+        "timestamp": 3002.0,
+        "tool_name": "sqlite_tool",
+        "arguments": {"operation": "write", "query": "INSERT"},
+        "permission_decision": "denied",
+        "permission_reason": "No write access",
+        "response": None,
+        "latency_ms": 50
+    })
+
+def generate_self_correction_trace(trace_path: str) -> None:
+    if os.path.exists(trace_path):
+        os.remove(trace_path)
+    recorder = ExecutionRecorder(trace_path)
+    
+    # 1. Invalid args
+    recorder.record_event({
+        "event_type": "tool_call",
+        "timestamp": 4001.0,
+        "tool_name": "filesystem_tool",
+        "arguments": {"path": "only"},
+        "permission_decision": "denied",
+        "permission_reason": "Missing operation",
+        "response": None,
+        "latency_ms": 10
+    })
+    # 2. Corrected args
+    recorder.record_event({
+        "event_type": "tool_call",
+        "timestamp": 4002.0,
+        "tool_name": "filesystem_tool",
+        "arguments": {"operation": "read", "path": "valid.txt"},
+        "permission_decision": "allowed",
+        "permission_reason": None,
+        "response": "Success",
+        "latency_ms": 10
+    })
+
+def test_complex_scenario_scoring() -> None:
+    metrics = [ToolSelectionAccuracy(), ArgumentCorrectness(), StepEfficiency(), GoalCompletionRate()]
+    trace_path = "complex.trace"
+    generate_complex_trace(trace_path)
+    
+    tc3 = EvalTestCase(
+        task_id="task-3",
+        input="Do two things",
+        expected_tool_calls=[
+            {"tool": "http_tool", "args": {"url": "http://api.example.com/start"}},
+            {"tool": "sqlite_tool", "args": {"operation": "write", "query": "INSERT"}}
+        ],
+        expected_final_state={},
+        expected_output_contains=[],
+        max_steps=5,
+        timeout_seconds=10.0
+    )
+    
+    trace3 = trace_to_agent_trace(
+        trace_path=trace_path,
+        task_id="task-3",
+        input_text="Do two things",
+        final_output="Done",
+        actual_state={}
+    )
+    
+    res3 = run_eval(trace3, tc3, metrics)
+    assert res3["metrics"]["Tool Selection Accuracy"].score == 0.5
+
+def test_self_correction_scoring() -> None:
+    metrics = [ToolSelectionAccuracy(), ArgumentCorrectness(), StepEfficiency(), GoalCompletionRate()]
+    trace_path = "correction.trace"
+    generate_self_correction_trace(trace_path)
+    
+    tc4 = EvalTestCase(
+        task_id="task-4",
+        input="Read valid.txt",
+        expected_tool_calls=[
+            {"tool": "filesystem_tool", "args": {"operation": "read", "path": "valid.txt"}}
+        ],
+        expected_final_state={},
+        expected_output_contains=[],
+        max_steps=5,
+        timeout_seconds=10.0
+    )
+    
+    trace4 = trace_to_agent_trace(
+        trace_path=trace_path,
+        task_id="task-4",
+        input_text="Read valid.txt",
+        final_output="Done",
+        actual_state={}
+    )
+    
+    res4 = run_eval(trace4, tc4, metrics)
+    assert res4["metrics"]["Tool Selection Accuracy"].score == 1.0

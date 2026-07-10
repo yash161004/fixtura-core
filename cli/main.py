@@ -1,9 +1,9 @@
 import argparse
 import sys
 
-from cli import record, replay, inspect, view, eval
+from cli import record, replay, inspect, view, eval, html_view
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="Fixtura CLI")
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
     
@@ -26,6 +26,10 @@ def main():
     # Eval
     parser_eval = subparsers.add_parser("eval", help="Score a trace via OpenEval adapter")
     parser_eval.add_argument("trace_file", help="Path to input trace file")
+    
+    # HTML View
+    parser_html_view = subparsers.add_parser("html-view", help="View a trace summary in HTML format")
+    parser_html_view.add_argument("trace_file", help="Path to input trace file")
 
     args = parser.parse_args()
     
@@ -39,6 +43,8 @@ def main():
         view.run(args.trace_file)
     elif args.command == "eval":
         eval.run(args.trace_file)
+    elif args.command == "html-view":
+        html_view.run(args.trace_file)
     else:
         parser.print_help()
 
