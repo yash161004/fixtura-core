@@ -1,0 +1,3 @@
+﻿exclude .agents/AGENTS.md
+recursive-exclude tests *
+recursive-exclude .github *

@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: fixtura
+Version: 1.0.0
+Summary: Deterministic execution recording and replay for AI agents
+Author: Yashrajsinh Rathod
+License: MIT
+Requires-Python: >=3.11
+License-File: LICENSE
+Requires-Dist: pydantic<3.0,>=2.0
+Requires-Dist: requests<3.0,>=2.0
+Requires-Dist: zstandard<1.0,>=0.20
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: types-requests>=2.0; extra == "dev"
+Dynamic: license-file

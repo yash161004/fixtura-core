@@ -1,0 +1,2 @@
+[console_scripts]
+fixtura = cli.main:main

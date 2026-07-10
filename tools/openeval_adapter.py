@@ -3,7 +3,13 @@ import re
 from pathlib import Path
 from typing import Union, Dict, Any
 
-from openeval.models import AgentTrace, TraceStep
+try:
+    from openeval.models import AgentTrace, TraceStep
+except ImportError:
+    raise RuntimeError(
+        "OpenEval is required for the eval adapter but not installed. "
+        "Install manually: pip install git+https://github.com/yash161004/OpenEval.git@4cb6cfe362c770a7674f5b0111ff54646883709b"
+    )
 from recorder.trace_reader import TraceReader
 
 def extract_step_id(step_id_str: str) -> int:

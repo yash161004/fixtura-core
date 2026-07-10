@@ -4,11 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fixtura"
-version = "0.1.0"
+version = "1.0.0"
+description = "Deterministic execution recording and replay for AI agents"
+authors = [
+    {name = "Yashrajsinh Rathod"}
+]
+license = {text = "MIT"}
 dependencies = [
-    "pydantic>=2.0",
-    "requests>=2.0",
-    "zstandard>=0.20",
+    "pydantic>=2.0,<3.0",
+    "requests>=2.0,<3.0",
+    "zstandard>=0.20,<1.0",
 ]
 requires-python = ">=3.11"
 

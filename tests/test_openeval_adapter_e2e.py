@@ -282,3 +282,35 @@ def test_self_correction_scoring() -> None:
     
     res4 = run_eval(trace4, tc4, metrics)
     assert res4["metrics"]["Tool Selection Accuracy"].score == 1.0
+import sys
+import importlib
+import pytest
+
+def test_openeval_import_failure():
+    # Save the original module if it exists
+    saved_modules = {}
+    for k in list(sys.modules.keys()):
+        if k.startswith('openeval'):
+            saved_modules[k] = sys.modules.pop(k)
+    
+    # Force sys.modules to say openeval is None, simulating it not being installed
+    sys.modules['openeval'] = None
+    
+    try:
+        # We need to remove the already imported openeval_adapter to force a reload
+        if 'tools.openeval_adapter' in sys.modules:
+            del sys.modules['tools.openeval_adapter']
+            
+        with pytest.raises(RuntimeError) as exc_info:
+            import tools.openeval_adapter
+            
+        assert "OpenEval is required for the eval adapter but not installed" in str(exc_info.value)
+    finally:
+        # Restore the original state so subsequent tests aren't broken
+        del sys.modules['openeval']
+        for k, v in saved_modules.items():
+            sys.modules[k] = v
+        
+        if 'tools.openeval_adapter' in sys.modules:
+            del sys.modules['tools.openeval_adapter']
+        import tools.openeval_adapter
