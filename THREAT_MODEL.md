@@ -48,3 +48,7 @@ Stating these explicitly is intentional — a threat model that claims to solve 
 ## Verification requirement
 
 The Sanitizer's redaction claim must be tested, not just implemented. See `ROADMAP.md`, Acceptance Test 6: a tool response containing a planted fake secret must not appear in the persisted trace file.
+
+## Known Testing Gaps
+
+- **Trace Spec Conformance:** Full spec-conformance of trace output isn't currently tested by a comprehensive automated schema assertion. A bug shipped to production in `1.0.2` (where `permission_reason` was null despite `permission_decision` being denied) was only caught by manual inspection of Acceptance Test 5 output. Automated regression tests for trace structural invariants (like `permission_reason` being a non-null string when denied) are required moving forward.

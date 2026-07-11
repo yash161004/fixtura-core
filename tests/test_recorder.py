@@ -87,3 +87,24 @@ def test_recorder_concurrency(tmp_path: Path) -> None:
     # Assert correct total event count and successful parsing
     assert len(events) == num_threads * events_per_thread
     assert all(e["event_type"] == "tool_call" for e in events)
+
+def test_trace_reader_validates_permission_reason_is_string(tmp_path: Path) -> None:
+    from recorder.trace_reader import TraceValidationError
+    trace_file = tmp_path / "test_reason.trace"
+    recorder = ExecutionRecorder(trace_file)
+    
+    event = {
+        "event_type": "tool_call",
+        "timestamp": "2026-07-06T00:00:00Z",
+        "step_id": "step1",
+        "tool_name": "http_tool",
+        "arguments": {},
+        "permission_decision": "denied",
+        "permission_reason": None,
+        "latency_ms": 10
+    }
+    recorder.record_event(event)
+    
+    reader = TraceReader(trace_file)
+    with pytest.raises(TraceValidationError, match="permission_reason required when permission_decision is denied"):
+        list(reader.read_events())
