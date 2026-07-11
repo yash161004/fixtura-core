@@ -13,3 +13,6 @@
 
 4. **Sandbox Path Validation**:
    The filesystem tool relies on `Path.resolve()` to fully evaluate paths, stripping out any `../` or symlinks before comparing it to the resolved sandbox root directory using `relative_to`. Any path not mathematically inside the sandbox root will trigger a sandbox violation.
+
+5. **Trace Viewer Architecture**:
+   The trace viewer functionality is split deliberately between core logic and CLI wrappers. `tools/viewer.py` and `tools/html_viewer.py` contain the actual implementation logic for parsing and formatting the `.trace` artifacts, while `cli/view.py` and `cli/html_view.py` act strictly as thin CLI wrappers/entry points. This ensures the viewer logic can be executed and tested independently of the top-level `fixtura` CLI router.
