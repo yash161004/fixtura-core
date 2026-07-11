@@ -15,7 +15,7 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 | Passive Replay | ✅ Done |
 | Step Inspection | ✅ Done |
 | OpenEval Adapter | ✅ Done |
-| Trace Viewer UI (minimal) | ⚠️ Not verified this session |
+| Trace Viewer UI (minimal) | ✅ Done — commit 5d49e0e, CI run #27 (29149996867), green |
 | Threat Model / Architecture / ADRs | ✅ Done |
 | Test suite | ✅ Done |
 
