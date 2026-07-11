@@ -185,3 +185,62 @@ def test_live_replay_rate_limited(tmp_path: Path) -> None:
     assert events[1]["permission_decision"] == "allowed"
     assert events[1]["rate_limit_decision"] == "rate_limited"
     assert "exceeded" in events[1]["rate_limit_reason"].lower()
+
+def test_live_replay_multi_hop_branch(tmp_path: Path) -> None:
+    # 1. Create root trace
+    root_trace = tmp_path / "root.trace"
+    recorder = ExecutionRecorder(root_trace)
+    recorder.record_event({
+        "event_type": "llm_call", "timestamp": 100.0,
+        "prompt": "Root prompt", "completion": "Root completion",
+        "provider": "p", "model": "m", "input_tokens": 1, "output_tokens": 1, "finish_reason": "stop", "latency_ms": 1
+    })
+    
+    # 2. Branch 1 from root
+    branch1_trace = tmp_path / "branch1.trace"
+    token = CapabilityToken()
+    rate_limiter = RateLimiter()
+    
+    def b1_agent(context: List[Dict[str, Any]], prompt: str) -> List[Dict[str, Any]]:
+        return [{
+            "type": "llm_call", "timestamp": 200.0,
+            "prompt": "Branch 1 prompt", "completion": "Branch 1 completion",
+            "provider": "p", "model": "m", "input_tokens": 1, "output_tokens": 1, "finish_reason": "stop", "latency_ms": 1
+        }]
+        
+    runtime1 = LiveReplayRuntime(
+        parent_trace_path=str(root_trace), branch_trace_path=str(branch1_trace), divergence_step_id="step-000001",
+        agent_callable=b1_agent, capability_token=token, rate_limiter=rate_limiter, tools={}
+    )
+    runtime1.run("Branch 1")
+    
+    # 3. Branch 2 from Branch 1
+    branch2_trace = tmp_path / "branch2.trace"
+    def b2_agent(context: List[Dict[str, Any]], prompt: str) -> List[Dict[str, Any]]:
+        # Validate that context contains both root and branch 1 events!
+        assert len(context) == 2
+        assert context[0]["prompt"] == "Root prompt"
+        assert context[1]["prompt"] == "Branch 1 prompt"
+        
+        return [{
+            "type": "llm_call", "timestamp": 300.0,
+            "prompt": "Branch 2 prompt", "completion": "Branch 2 completion",
+            "provider": "p", "model": "m", "input_tokens": 1, "output_tokens": 1, "finish_reason": "stop", "latency_ms": 1
+        }]
+        
+    runtime2 = LiveReplayRuntime(
+        parent_trace_path=str(branch1_trace), branch_trace_path=str(branch2_trace), divergence_step_id="step-000002",
+        agent_callable=b2_agent, capability_token=token, rate_limiter=rate_limiter, tools={}
+    )
+    runtime2.run("Branch 2")
+    
+    # Verify final trace
+    reader = TraceReader(branch2_trace)
+    events = list(reader.read_events())
+    assert len(events) == 3
+    assert events[0]["step_id"] == "step-000001"
+    assert events[1]["step_id"] == "step-000002"
+    assert events[2]["step_id"] == "step-000003"
+    assert events[0]["prompt"] == "Root prompt"
+    assert events[1]["prompt"] == "Branch 1 prompt"
+    assert events[2]["prompt"] == "Branch 2 prompt"
