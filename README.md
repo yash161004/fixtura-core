@@ -20,11 +20,11 @@ Most "agent observability" tools (Langfuse, Phoenix, Braintrust, Laminar) are bu
 
 The OpenEval evaluation harness (Acceptance Test 4) relies on OpenEval, which is currently unpublished on PyPI. Note that the openeval namespace on PyPI is occupied by an unrelated placeholder package. 
 
-To use the OpenEval Adapter, you must manually install OpenEval via git:
-`ash
-pip install git+https://github.com/yash161004/OpenEval.git@4cb6cfe362c770a7674f5b0111ff54646883709b
-`
-Without this, pip install fixtura will give you the core recording, permissions, and replay capabilities, but importing ixtura.tools.openeval_adapter will raise a clear RuntimeError prompting this manual installation.
+To use the OpenEval Adapter, you must install Fixtura with the `eval` extra:
+```bash
+pip install fixtura[eval]
+```
+Without this, `pip install fixtura` will give you the core recording, permissions, and replay capabilities, but importing `fixtura.tools.openeval_adapter` will raise a clear RuntimeError prompting this manual installation.
 
 ## Documents in this repo
 
