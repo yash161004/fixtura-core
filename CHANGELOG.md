@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2026-07-11
+### Fixed
+- Fixed trace validation backward compatibility: TraceReader now accepts missing/null `permission_reason` in legacy traces (assigning a standard unknown message).
+- Prevented potential trace leak from Pydantic `ValidationError` by constructing safe error messages without inputs or context.
+
 ## [1.0.4] - 2026-07-11
 ### Fixed
 - Fixed trace recorder to correctly map pydantic `ValidationError` string to `permission_reason` instead of relying on `reason` which is only populated on permission denials.

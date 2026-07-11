@@ -19,7 +19,9 @@ class BaseTool:
         try:
             validated = self.schema_cls(**arguments)
         except ValidationError as e:
-            return ToolResult(outcome="validation_error", error=str(e))
+            errors = e.errors(include_url=False, include_context=False, include_input=False)
+            safe_error = "Validation error: " + ", ".join([f"{err['loc']}: {err['msg']}" for err in errors])
+            return ToolResult(outcome="validation_error", error=safe_error)
             
         # check() runs on validated arguments
         status, reason = check(capability_token, self.name, validated.model_dump())

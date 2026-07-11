@@ -92,8 +92,8 @@ def test_trace_reader_validates_permission_reason_is_string(tmp_path: Path) -> N
     from recorder.trace_reader import TraceValidationError
     trace_file = tmp_path / "test_reason.trace"
     recorder = ExecutionRecorder(trace_file)
-    
-    event = {
+    from typing import Dict, Any
+    event: Dict[str, Any] = {
         "event_type": "tool_call",
         "timestamp": "2026-07-06T00:00:00Z",
         "step_id": "step1",

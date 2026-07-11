@@ -48,8 +48,12 @@ class TraceReader:
                 raise TraceValidationError(f"Invalid permission_decision: {decision}")
                 
             if decision == "denied":
-                if "permission_reason" not in event:
-                    raise TraceValidationError("permission_reason required when permission_decision is denied")
+                if "permission_reason" not in event or event["permission_reason"] is None:
+                    # Backward compatibility for pre-1.0.4 traces
+                    event["permission_reason"] = "Unknown denial reason (legacy trace)"
+                elif not isinstance(event["permission_reason"], str):
+                    raise TraceValidationError("permission_reason must be a string when permission_decision is denied")
+                
                 if "response" not in event or event.get("response") is not None:
                     raise TraceValidationError("response must be null when permission_decision is denied")
             elif decision == "allowed":
