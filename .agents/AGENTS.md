@@ -1,5 +1,13 @@
 # Fixtura Agent Rules
 
+## Trigger Condition
+**Re-evaluate these rules when:**
+- A new major Phase (e.g., Phase 2) begins.
+- Introducing new state-mutating functionality or new MCP integrations.
+- GitHub deprecates an action version currently in use (e.g., Node 20 phase-out requires bumping actions).
+
+---
+
 The following rules apply to all tasks executed in this workspace:
 
 1. **MCP Usage Policy:**
