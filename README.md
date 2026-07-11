@@ -14,7 +14,7 @@ Most "agent observability" tools (Langfuse, Phoenix, Braintrust, Laminar) are bu
 
 ## Status
 
-✅ v1.0.2 is released. See ROADMAP.md for future features like counterfactual replay (Live Branching).
+🎯 v1.0.6 is released. See ROADMAP.md for future features like counterfactual replay (Live Branching).
 
 ## OpenEval Adapter (optional, manual install required)
 
