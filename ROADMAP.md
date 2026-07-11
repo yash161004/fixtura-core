@@ -14,10 +14,10 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 | Recorder Sanitizer (redact/truncate) | ✅ Done |
 | Passive Replay | ✅ Done |
 | Step Inspection | ✅ Done |
-| OpenEval Adapter | ✅ Build |
-| Trace Viewer UI (minimal) | ✅ Build |
-| Threat Model / Architecture / ADRs | ✅ Documentation |
-| Test suite | ✅ Build |
+| OpenEval Adapter | ✅ Done |
+| Trace Viewer UI (minimal) | ✅ Done |
+| Threat Model / Architecture / ADRs | ✅ Done |
+| Test suite | ✅ Done |
 
 ## v1.1 — Postponed (do not start until v1 passes all acceptance tests)
 
@@ -30,7 +30,7 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 - Advanced metrics
 - **Retrospective / Security Review:** Completed. AGENTS.md autonomous bindings have been officially restricted to read-only operations for v1.1.
 - **CI Setup / Symlink Verification:** Completed. GitHub Actions workflow established and path traversal symlink defense natively verified on Linux.
-- **Packaging/Distribution:** ✅ Completed. AT5 verified against real PyPI `fixtura==1.0.6`. `permission_reason` spec compliant.
+- **Packaging/Distribution:** ✅ Completed. AT5 verified against real PyPI `fixtura==1.0.6`. `permission_reason` spec compliant. OpenEval adapter successfully packaged via `[eval]` extra and CI-verified.
 
 ## v2 — Future work, not scoped in detail
 
@@ -41,9 +41,9 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 
 ## Acceptance tests (v1 is "done" when all six pass — feature count does not matter)
 
-1. **Recording** — Record an agent run. Pass if a complete `.trace` artifact is produced.
-2. **Replay** — Replay the trace. Pass if every recorded step is reproduced without touching any external system (verify: no real DB/API/filesystem calls occur during replay).
-3. **Permission enforcement** — An unauthorized tool call is blocked *and* still appears in the trace with a "denied" status.
-4. **Evaluation harness** — Predefined benchmark scenarios run through the OpenEval adapter and produce consistent trajectory-level results. (Reproducibility is scoped to trajectory assertions passing consistently, not bit-identical LLM output text — real LLM calls are not deterministic.)
-5. **Developer experience** — A new developer clones the repo, starts the system, runs a sample recording, replays it, and inspects the trace in under 10 minutes, no exceptions.
-6. **Sanitizer verification** — Run a scenario where a tool response contains a planted fake secret string. Pass if the persisted `.trace` file does not contain that string. (This validates the one component that exists specifically to fix a stated security gap — do not ship without it.)
+1. **Recording** — ✅ Pass. Record an agent run. Pass if a complete `.trace` artifact is produced.
+2. **Replay** — ✅ Pass. Replay the trace. Pass if every recorded step is reproduced without touching any external system (verify: no real DB/API/filesystem calls occur during replay).
+3. **Permission enforcement** — ✅ Pass. An unauthorized tool call is blocked *and* still appears in the trace with a "denied" status.
+4. **Evaluation harness (AT4)** — ✅ Pass. Predefined benchmark scenarios run through the OpenEval adapter and produce consistent trajectory-level results. (Reproducibility is scoped to trajectory assertions passing consistently, not bit-identical LLM output text — real LLM calls are not deterministic.)
+5. **Developer experience** — ✅ Pass. A new developer clones the repo, starts the system, runs a sample recording, replays it, and inspects the trace in under 10 minutes, no exceptions.
+6. **Sanitizer verification** — ✅ Pass. Run a scenario where a tool response contains a planted fake secret string. Pass if the persisted `.trace` file does not contain that string. (This validates the one component that exists specifically to fix a stated security gap — do not ship without it.)
