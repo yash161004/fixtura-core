@@ -21,6 +21,12 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 
 ## v1.1 — Postponed (do not start until v1 passes all acceptance tests)
 
+- **Positioning: Execution Assurance layer.** Fixtura is not building toward becoming an orchestration framework, a memory system, or a general "Agent OS." That space is mature and well-funded (LangGraph, CrewAI, Mem0, Zep, and others cover planning, memory, tool routing, and multi-agent coordination). Fixtura's scope stays fixed: deterministic execution recording, replay, and evaluation — a layer that sits *underneath* whichever orchestration framework a team already uses, not a replacement for it. This entry exists so no future roadmap re-introduces "Agent OS" as a destination; if that discussion comes up again, it should be evaluated against this note first, not re-litigated from scratch.
+- **LangGraph adapter (first and only framework integration for v1.1):**
+  - Scope: one adapter, targeting LangGraph specifically — chosen because it has the largest enterprise-weighted install base and exposes native checkpointing/node-transition hooks that give a clean, documented attachment point (lower engineering risk than frameworks with opaque internals).
+  - Explicitly NOT in scope for this item: adapters for CrewAI, OpenAI Agents SDK, Google ADK, Microsoft Agent Framework, LlamaIndex, or any other framework. A second adapter is a new roadmap item, not an extension of this one, and requires the gate below to be met first.
+  - Gate: do not start implementation until v1 has a public release and there is real, observed demand — a GitHub issue, integration request, or external contributor asking for it. Architectural hypothesis (deterministic replay is underserved) is not the same as validated demand; this item stays gated on the latter.
+  - Definition of done, when ungated: adapter records real trace data from a LangGraph run into Fixtura's existing `.trace` format via LangGraph's native hooks, without modifying LangGraph's own state management; passive replay and OpenEval scoring work against the resulting trace exactly as they do for Fixtura's native tools; acceptance tests 1–6 pass against LangGraph-sourced traces the same as they do for native ones.
 - **Counterfactual replay / branching:** 
   - Phase A (Storage schema & TraceReader): ✅ Completed.
   - Phase B (Live execution & security enforcement): ✅ Completed.
