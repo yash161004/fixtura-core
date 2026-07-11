@@ -48,10 +48,10 @@ def test_trace_validation(tmp_path: Path) -> None:
         
     trace_file.unlink()
 
-    # 4. Denied without reason
-    write_raw({"step_id": "step-1", "timestamp": "t", "event_type": "tool_call", "tool_name": "t", "arguments": {}, "permission_decision": "denied", "response": None, "latency_ms": 0})
+    # 4. Denied with non-string reason
+    write_raw({"step_id": "step-1", "timestamp": "t", "event_type": "tool_call", "tool_name": "t", "arguments": {}, "permission_decision": "denied", "permission_reason": 123, "response": None, "latency_ms": 0})
     reader = TraceReader(trace_file)
-    with pytest.raises(TraceValidationError, match="permission_reason required when permission_decision is denied"):
+    with pytest.raises(TraceValidationError, match="permission_reason must be a string when permission_decision is denied"):
         list(reader.read_events())
 
 def test_monotonic_step_id(tmp_path: Path) -> None:

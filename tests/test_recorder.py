@@ -100,11 +100,12 @@ def test_trace_reader_validates_permission_reason_is_string(tmp_path: Path) -> N
         "tool_name": "http_tool",
         "arguments": {},
         "permission_decision": "denied",
-        "permission_reason": None,
+        "permission_reason": 123,
+        "response": None,
         "latency_ms": 10
     }
     recorder.record_event(event)
     
     reader = TraceReader(trace_file)
-    with pytest.raises(TraceValidationError, match="permission_reason required when permission_decision is denied"):
+    with pytest.raises(TraceValidationError, match="permission_reason must be a string when permission_decision is denied"):
         list(reader.read_events())
