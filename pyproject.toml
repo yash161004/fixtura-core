@@ -24,7 +24,7 @@ dev = [
     "mypy>=1.0",
     "types-requests>=2.0",
 ]
-eval = ["openeval @ git+https://github.com/yash161004/OpenEval.git@4cb6cfe362c770a7674f5b0111ff54646883709b"]
+eval = ["openeval-core @ git+https://github.com/yash161004/OpenEval.git@4cb6cfe362c770a7674f5b0111ff54646883709b"]
 
 [project.scripts]
 fixtura = "cli.main:main"
