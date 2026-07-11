@@ -4,7 +4,7 @@
 
 ## What this is
 
-Fixtura watches an AI agent's tool calls (filesystem, database, API, etc.), records everything that happens through a permission-checked execution layer, and lets you replay that recording later — deterministically, without touching live systems — to debug failures or gate CI on regressions.
+Fixtura is a **framework-agnostic execution-assurance layer** that sits underneath whichever orchestration framework a team already uses (like LangGraph or CrewAI). It watches an AI agent's tool calls, records everything that happens through a permission-checked execution layer, and lets you replay that recording later — deterministically, without touching live systems — to debug failures or gate CI on regressions.
 
 It's built to work with **OpenEval**, a deterministic (non-LLM-judge) agent evaluation engine already built and published separately. Fixtura produces the recordings; OpenEval scores them.
 

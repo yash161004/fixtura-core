@@ -83,4 +83,17 @@ An earlier draft of this project considered adding a Planning Engine, Memory Eng
 - **Cost Optimizer**: without a defined objective function this is just heuristics; postponed.
 - **Multi-agent Communication**: doesn't strengthen the debugging story this project is actually about.
 
+This isn't just a v1 scoping call — it's a standing position, revisited and reconfirmed as of mid-2026. The orchestration/memory space has matured substantially since the original cut: LangGraph, CrewAI, Microsoft Agent Framework, Google ADK, and the OpenAI Agents SDK now cover planning, tool routing, and multi-agent coordination; Mem0, Zep, and Letta cover memory with published benchmarks. Rebuilding any of that would mean competing directly with funded, adopted incumbents on their own turf — not filling a gap.
+
+Fixtura's position is the layer underneath those frameworks, not a competitor to them: **deterministic execution recording, replay, and evaluation** — framework-agnostic, so it stays useful regardless of which orchestration tool sits on top. See `ROADMAP.md`'s v1.1 section for the resulting scope decision (a single LangGraph adapter, gated on real demand, not a general integration push).
+
+### What Fixtura is not
+
+To keep this from drifting back toward the AgentOS shape:
+- Not an orchestration framework — doesn't decide what an agent does next
+- Not a memory system — doesn't store or retrieve context across sessions
+- Not a hosted dashboard or SaaS platform — no login, no multi-tenant UI
+- Not a cost optimizer or model router
+- Not a destination other tools plug into — it's the layer that plugs into them
+
 See `ROADMAP.md` for the authoritative frozen scope.
