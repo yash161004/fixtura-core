@@ -15,3 +15,12 @@ env/
 
 # Project specific
 *.trace
+ci_log*.txt
+history.html
+version.html
+
+# Build artifacts
+dist/
+*.egg-info/
+build/
+%TEMP%/
