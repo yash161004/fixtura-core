@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from cli import record, replay, inspect, view, eval, html_view
+from cli import record, replay, inspect, view, eval, html_view, branch
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Fixtura CLI")
@@ -18,6 +18,13 @@ def main() -> None:
     # Inspect
     parser_inspect = subparsers.add_parser("inspect", help="Step-inspect a trace interactively")
     parser_inspect.add_argument("trace_file", help="Path to input trace file")
+    
+    # Branch
+    parser_branch = subparsers.add_parser("branch", help="Create a live branch from an existing trace")
+    parser_branch.add_argument("parent_trace", help="Path to input parent trace file")
+    parser_branch.add_argument("branch_trace", help="Path to output branch trace file")
+    parser_branch.add_argument("divergence_step", help="Step ID to diverge at")
+    parser_branch.add_argument("prompt", help="New prompt for the diverged branch")
     
     # View
     parser_view = subparsers.add_parser("view", help="View a trace summary")
@@ -39,6 +46,8 @@ def main() -> None:
         replay.run(args.trace_file)
     elif args.command == "inspect":
         inspect.run(args.trace_file)
+    elif args.command == "branch":
+        branch.run(args.parent_trace, args.branch_trace, args.divergence_step, args.prompt)
     elif args.command == "view":
         view.run(args.trace_file)
     elif args.command == "eval":

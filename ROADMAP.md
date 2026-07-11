@@ -23,7 +23,7 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 
 - **Counterfactual replay / branching:** 
   - Phase A (Storage schema & TraceReader): ✅ Completed.
-  - Phase B (Live execution & security enforcement): Not started.
+  - Phase B (Live execution & security enforcement): ✅ Completed.
 - Incident report generation (deterministic format — no fabricated confidence scores)
 - Automatic failure classification (Layer 1 infra failures only are automatic; Layer 2–4 require benchmark-defined expected trajectories or manual review)
 - Rate limiting / circuit breakers

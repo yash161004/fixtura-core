@@ -8,11 +8,20 @@ from recorder.sanitizer import Sanitizer
 class ExecutionRecorder:
     def __init__(self, trace_file: Union[str, Path], parent_trace_id: str | None = None, divergence_step_id: str | None = None) -> None:
         self.trace_file = Path(trace_file)
+        self.parent_trace_id = parent_trace_id
+        self.divergence_step_id = divergence_step_id
         self.sanitizer = Sanitizer()
         self._lock = threading.Lock()
         self._step_counter = 1
         
-        if parent_trace_id and divergence_step_id:
+        if self.divergence_step_id and self.divergence_step_id.startswith("step-"):
+            try:
+                self._step_counter = int(self.divergence_step_id.split("-")[1]) + 1
+            except ValueError:
+                pass
+                
+        # Write trace_header if branch
+        if self.parent_trace_id and self.divergence_step_id:
             header = {
                 "event_type": "trace_header",
                 "parent_trace_id": parent_trace_id,

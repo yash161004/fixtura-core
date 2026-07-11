@@ -37,7 +37,6 @@ def test_single_hop_branch(tmp_path: Path) -> None:
     # 2. Create branch trace diverging at step-000001
     branch_path = tmp_path / "branch1.trace"
     branch_recorder = ExecutionRecorder(branch_path, parent_trace_id="root", divergence_step_id="step-000001")
-    branch_recorder._step_counter = 2
     branch_recorder.record_event({
         "event_type": "llm_call", "timestamp": 300.0,
         "prompt": "Branch prompt", "completion": "Branch completion",
@@ -61,7 +60,6 @@ def test_multi_hop_branch(tmp_path: Path) -> None:
     
     # Branch 1 from Root
     b1_recorder = ExecutionRecorder(tmp_path / "t2.trace", parent_trace_id="t1", divergence_step_id="step-000001")
-    b1_recorder._step_counter = 2  # Branch continues from step 2
     b1_recorder.record_event({
         "event_type": "llm_call", "timestamp": 200.0,
         "prompt": "B1 1", "completion": "c",
@@ -75,7 +73,6 @@ def test_multi_hop_branch(tmp_path: Path) -> None:
     
     # Branch 2 from Branch 1 (diverges at B1 1, which is step-000002)
     b2_recorder = ExecutionRecorder(tmp_path / "t3.trace", parent_trace_id="t2", divergence_step_id="step-000002")
-    b2_recorder._step_counter = 3  # Branch 2 continues from step 3
     b2_recorder.record_event({
         "event_type": "llm_call", "timestamp": 400.0,
         "prompt": "B2 1", "completion": "c",
