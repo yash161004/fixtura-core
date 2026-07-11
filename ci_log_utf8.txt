@@ -1,0 +1,403 @@
+﻿test	Set up job	∩╗┐2026-07-10T03:43:47.0725157Z Current runner version: '2.335.1'
+test	Set up job	2026-07-10T03:43:47.0753345Z ##[group]Runner Image Provisioner
+test	Set up job	2026-07-10T03:43:47.0754350Z Hosted Compute Agent
+test	Set up job	2026-07-10T03:43:47.0754999Z Version: 20260624.560
+test	Set up job	2026-07-10T03:43:47.0755678Z Commit: 925d229a51159bc391ae97e54a2dd1fe20af789d
+test	Set up job	2026-07-10T03:43:47.0756466Z Build Date: 2026-06-24T18:26:47Z
+test	Set up job	2026-07-10T03:43:47.0757163Z Worker ID: {9328954b-c78b-4ac5-8c89-ee8115c73e7c}
+test	Set up job	2026-07-10T03:43:47.0757936Z Azure Region: eastus2
+test	Set up job	2026-07-10T03:43:47.0758521Z ##[endgroup]
+test	Set up job	2026-07-10T03:43:47.0759901Z ##[group]Operating System
+test	Set up job	2026-07-10T03:43:47.0760665Z Ubuntu
+test	Set up job	2026-07-10T03:43:47.0761209Z 24.04.4
+test	Set up job	2026-07-10T03:43:47.0761770Z LTS
+test	Set up job	2026-07-10T03:43:47.0763680Z ##[endgroup]
+test	Set up job	2026-07-10T03:43:47.0764499Z ##[group]Runner Image
+test	Set up job	2026-07-10T03:43:47.0765482Z Image: ubuntu-24.04
+test	Set up job	2026-07-10T03:43:47.0766070Z Version: 20260705.232.1
+test	Set up job	2026-07-10T03:43:47.0767152Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260705.232/images/ubuntu/Ubuntu2404-Readme.md
+test	Set up job	2026-07-10T03:43:47.0769022Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260705.232
+test	Set up job	2026-07-10T03:43:47.0770075Z ##[endgroup]
+test	Set up job	2026-07-10T03:43:47.0771272Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-07-10T03:43:47.0773832Z Contents: read
+test	Set up job	2026-07-10T03:43:47.0774491Z Metadata: read
+test	Set up job	2026-07-10T03:43:47.0775060Z Packages: read
+test	Set up job	2026-07-10T03:43:47.0775745Z ##[endgroup]
+test	Set up job	2026-07-10T03:43:47.0777984Z Secret source: Actions
+test	Set up job	2026-07-10T03:43:47.0779424Z Prepare workflow directory
+test	Set up job	2026-07-10T03:43:47.1126370Z Prepare all required actions
+test	Set up job	2026-07-10T03:43:47.1166248Z Getting action download info
+test	Set up job	2026-07-10T03:43:47.3289919Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+test	Set up job	2026-07-10T03:43:47.4114356Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+test	Set up job	2026-07-10T03:43:47.5948946Z Complete job name: test
+test	Run actions/checkout@v4	∩╗┐2026-07-10T03:43:47.6673795Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6682500Z ##[group]Run actions/checkout@v4
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6683887Z with:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6684335Z   repository: yash161004/fixtura-core
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6688027Z   token: ***
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6688457Z   ssh-strict: true
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6688899Z   ssh-user: git
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6689340Z   persist-credentials: true
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6689823Z   clean: true
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6690262Z   sparse-checkout-cone-mode: true
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6690772Z   fetch-depth: 1
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6691199Z   fetch-tags: false
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6691638Z   show-progress: true
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6692078Z   lfs: false
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6692482Z   submodules: false
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6693193Z   set-safe-directory: true
+test	Run actions/checkout@v4	2026-07-10T03:43:47.6693908Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7680072Z Syncing repository: yash161004/fixtura-core
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7682129Z ##[group]Getting Git version info
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7683195Z Working directory is '/home/runner/work/fixtura-core/fixtura-core'
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7684273Z [command]/usr/bin/git version
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7756855Z git version 2.54.0
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7776572Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7791207Z Temporarily overriding HOME='/home/runner/work/_temp/21cc64b2-41ea-403c-b7b1-98b8f997bc77' before making global git config changes
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7793812Z Adding repository directory to the temporary git global config as a safe directory
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7796591Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/fixtura-core/fixtura-core
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7844588Z Deleting the contents of '/home/runner/work/fixtura-core/fixtura-core'
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7848812Z ##[group]Initializing the repository
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7853680Z [command]/usr/bin/git init /home/runner/work/fixtura-core/fixtura-core
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7931375Z hint: Using 'master' as the name for the initial branch. This default branch name
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7938392Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7940293Z hint: to use in all of your new repositories, which will suppress this warning,
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7941680Z hint: call:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7942857Z hint:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7943754Z hint: 	git config --global init.defaultBranch <name>
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7944758Z hint:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7945649Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7947082Z hint: 'development'. The just-created branch can be renamed via this command:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7948246Z hint:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7948895Z hint: 	git branch -m <name>
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7949611Z hint:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7950229Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7951376Z Initialized empty Git repository in /home/runner/work/fixtura-core/fixtura-core/.git/
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7955184Z [command]/usr/bin/git remote add origin https://github.com/yash161004/fixtura-core
+test	Run actions/checkout@v4	2026-07-10T03:43:47.7999866Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8001046Z ##[group]Disabling automatic garbage collection
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8004856Z [command]/usr/bin/git config --local gc.auto 0
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8041644Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8043400Z ##[group]Setting up auth
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8051340Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8091975Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8428324Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8471364Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8744106Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Run actions/checkout@v4	2026-07-10T03:43:47.8785270Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Run actions/checkout@v4	2026-07-10T03:43:47.9028475Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test	Run actions/checkout@v4	2026-07-10T03:43:47.9070137Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:47.9070944Z ##[group]Fetching the repository
+test	Run actions/checkout@v4	2026-07-10T03:43:47.9080143Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +d5f478b6105b5ac7498a429039c392ca87c045d9:refs/remotes/origin/master
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1274500Z From https://github.com/yash161004/fixtura-core
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1276455Z  * [new ref]         d5f478b6105b5ac7498a429039c392ca87c045d9 -> origin/master
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1333662Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1345032Z ##[group]Determining the checkout info
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1346473Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1347170Z [command]/usr/bin/git sparse-checkout disable
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1388984Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1425798Z ##[group]Checking out the ref
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1432357Z [command]/usr/bin/git checkout --progress --force -B master refs/remotes/origin/master
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1528770Z Reset branch 'master'
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1532965Z branch 'master' set up to track 'origin/master'.
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1539476Z ##[endgroup]
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1593145Z [command]/usr/bin/git log -1 --format=%H
+test	Run actions/checkout@v4	2026-07-10T03:43:48.1623542Z d5f478b6105b5ac7498a429039c392ca87c045d9
+test	Set up Python 3.11	∩╗┐2026-07-10T03:43:48.1924875Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test	Set up Python 3.11	2026-07-10T03:43:48.1930795Z ##[group]Run actions/setup-python@v5
+test	Set up Python 3.11	2026-07-10T03:43:48.1931843Z with:
+test	Set up Python 3.11	2026-07-10T03:43:48.1932640Z   python-version: 3.11
+test	Set up Python 3.11	2026-07-10T03:43:48.1933765Z   check-latest: false
+test	Set up Python 3.11	2026-07-10T03:43:48.1940561Z   token: ***
+test	Set up Python 3.11	2026-07-10T03:43:48.1941138Z   update-environment: true
+test	Set up Python 3.11	2026-07-10T03:43:48.1941698Z   allow-prereleases: false
+test	Set up Python 3.11	2026-07-10T03:43:48.1942244Z   freethreaded: false
+test	Set up Python 3.11	2026-07-10T03:43:48.1942987Z ##[endgroup]
+test	Set up Python 3.11	2026-07-10T03:43:48.3283775Z ##[group]Installed versions
+test	Set up Python 3.11	2026-07-10T03:43:48.3413400Z (node:2299) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Set up Python 3.11	2026-07-10T03:43:48.3416014Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Set up Python 3.11	2026-07-10T03:43:48.3417609Z Successfully set up CPython (3.11.15)
+test	Set up Python 3.11	2026-07-10T03:43:48.3419240Z ##[endgroup]
+test	Install dependencies	∩╗┐2026-07-10T03:43:48.3593129Z ##[group]Run python -m pip install --upgrade pip
+test	Install dependencies	2026-07-10T03:43:48.3594494Z ^[[36;1mpython -m pip install --upgrade pip^[[0m
+test	Install dependencies	2026-07-10T03:43:48.3595537Z ^[[36;1mpip install -e .[dev]^[[0m
+test	Install dependencies	2026-07-10T03:43:48.3596562Z ^[[36;1mpip install anyio langsmith pydantic zstandard^[[0m
+test	Install dependencies	2026-07-10T03:43:48.3598529Z ^[[36;1mpip install git+https://github.com/yash161004/OpenEval.git@4cb6cfe362c770a7674f5b0111ff54646883709b^[[0m
+test	Install dependencies	2026-07-10T03:43:48.3789923Z shell: /usr/bin/bash -e {0}
+test	Install dependencies	2026-07-10T03:43:48.3790615Z env:
+test	Install dependencies	2026-07-10T03:43:48.3791214Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Install dependencies	2026-07-10T03:43:48.3792268Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+test	Install dependencies	2026-07-10T03:43:48.3793535Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Install dependencies	2026-07-10T03:43:48.3794405Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Install dependencies	2026-07-10T03:43:48.3795274Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Install dependencies	2026-07-10T03:43:48.3796315Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+test	Install dependencies	2026-07-10T03:43:48.3797112Z ##[endgroup]
+test	Install dependencies	2026-07-10T03:43:49.8348227Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (26.1.2)
+test	Install dependencies	2026-07-10T03:43:50.4203614Z Obtaining file:///home/runner/work/fixtura-core/fixtura-core
+test	Install dependencies	2026-07-10T03:43:50.4219737Z   Installing build dependencies: started
+test	Install dependencies	2026-07-10T03:43:51.1587359Z   Installing build dependencies: finished with status 'done'
+test	Install dependencies	2026-07-10T03:43:51.1593363Z   Checking if build backend supports build_editable: started
+test	Install dependencies	2026-07-10T03:43:51.5309426Z   Checking if build backend supports build_editable: finished with status 'done'
+test	Install dependencies	2026-07-10T03:43:51.5317616Z   Getting requirements to build editable: started
+test	Install dependencies	2026-07-10T03:43:51.9148505Z   Getting requirements to build editable: finished with status 'done'
+test	Install dependencies	2026-07-10T03:43:51.9158198Z   Preparing editable metadata (pyproject.toml): started
+test	Install dependencies	2026-07-10T03:43:52.0920052Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+test	Install dependencies	2026-07-10T03:43:52.2731311Z Collecting pydantic<3.0,>=2.0 (from fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:52.3345815Z   Downloading pydantic-2.13.4-py3-none-any.whl.metadata (109 kB)
+test	Install dependencies	2026-07-10T03:43:52.3807079Z Collecting requests<3.0,>=2.0 (from fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:52.3886184Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+test	Install dependencies	2026-07-10T03:43:52.4518237Z Collecting zstandard<1.0,>=0.20 (from fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:52.4598296Z   Downloading zstandard-0.25.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.3 kB)
+test	Install dependencies	2026-07-10T03:43:52.4876975Z Collecting pytest>=7.0 (from fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:52.4959109Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+test	Install dependencies	2026-07-10T03:43:52.5925278Z Collecting mypy>=1.0 (from fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:52.6004952Z   Downloading mypy-2.2.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+test	Install dependencies	2026-07-10T03:43:52.6277777Z Collecting types-requests>=2.0 (from fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:52.6355640Z   Downloading types_requests-2.33.0.20260518-py3-none-any.whl.metadata (2.2 kB)
+test	Install dependencies	2026-07-10T03:43:52.6489598Z Collecting annotated-types>=0.6.0 (from pydantic<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:52.6565493Z   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+test	Install dependencies	2026-07-10T03:43:53.2667495Z Collecting pydantic-core==2.46.4 (from pydantic<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.2745498Z   Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+test	Install dependencies	2026-07-10T03:43:53.2924427Z Collecting typing-extensions>=4.14.1 (from pydantic<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.3004539Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+test	Install dependencies	2026-07-10T03:43:53.3326124Z Collecting typing-inspection>=0.4.2 (from pydantic<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.3402983Z   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+test	Install dependencies	2026-07-10T03:43:53.4330113Z Collecting charset_normalizer<4,>=2 (from requests<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.4408344Z   Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (41 kB)
+test	Install dependencies	2026-07-10T03:43:53.4601423Z Collecting idna<4,>=2.5 (from requests<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.4684992Z   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+test	Install dependencies	2026-07-10T03:43:53.4908466Z Collecting urllib3<3,>=1.26 (from requests<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.4984787Z   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+test	Install dependencies	2026-07-10T03:43:53.5170985Z Collecting certifi>=2023.5.7 (from requests<3.0,>=2.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.5248663Z   Downloading certifi-2026.6.17-py3-none-any.whl.metadata (2.5 kB)
+test	Install dependencies	2026-07-10T03:43:53.5484778Z Collecting mypy_extensions>=1.0.0 (from mypy>=1.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.5620377Z   Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+test	Install dependencies	2026-07-10T03:43:53.5858859Z Collecting pathspec>=1.0.0 (from mypy>=1.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.5936682Z   Downloading pathspec-1.1.1-py3-none-any.whl.metadata (14 kB)
+test	Install dependencies	2026-07-10T03:43:53.6896705Z Collecting librt>=0.12.0 (from mypy>=1.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.6974866Z   Downloading librt-0.13.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (1.3 kB)
+test	Install dependencies	2026-07-10T03:43:53.7217865Z Collecting ast-serialize<1.0.0,>=0.6.0 (from mypy>=1.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.7293647Z   Downloading ast_serialize-0.6.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.3 kB)
+test	Install dependencies	2026-07-10T03:43:53.7436212Z Collecting iniconfig>=1.0.1 (from pytest>=7.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.7512373Z   Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+test	Install dependencies	2026-07-10T03:43:53.7676450Z Collecting packaging>=22 (from pytest>=7.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.7752622Z   Downloading packaging-26.2-py3-none-any.whl.metadata (3.5 kB)
+test	Install dependencies	2026-07-10T03:43:53.7891868Z Collecting pluggy<2,>=1.5 (from pytest>=7.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.7967440Z   Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+test	Install dependencies	2026-07-10T03:43:53.8155556Z Collecting pygments>=2.7.2 (from pytest>=7.0->fixtura==1.0.0)
+test	Install dependencies	2026-07-10T03:43:53.8232124Z   Downloading pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+test	Install dependencies	2026-07-10T03:43:53.8388054Z Downloading pydantic-2.13.4-py3-none-any.whl (472 kB)
+test	Install dependencies	2026-07-10T03:43:53.8825048Z Downloading pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+test	Install dependencies	2026-07-10T03:43:53.9775924Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 2.1/2.1 MB 23.9 MB/s  0:00:00
+test	Install dependencies	2026-07-10T03:43:53.9853702Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+test	Install dependencies	2026-07-10T03:43:53.9952534Z Downloading charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+test	Install dependencies	2026-07-10T03:43:54.0107015Z Downloading idna-3.18-py3-none-any.whl (65 kB)
+test	Install dependencies	2026-07-10T03:43:54.0206490Z Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+test	Install dependencies	2026-07-10T03:43:54.0318725Z Downloading zstandard-0.25.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.6 MB)
+test	Install dependencies	2026-07-10T03:43:54.1421918Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 5.6/5.6 MB 52.0 MB/s  0:00:00
+test	Install dependencies	2026-07-10T03:43:54.1498503Z Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+test	Install dependencies	2026-07-10T03:43:54.1594859Z Downloading certifi-2026.6.17-py3-none-any.whl (133 kB)
+test	Install dependencies	2026-07-10T03:43:54.1700947Z Downloading mypy-2.2.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (15.0 MB)
+test	Install dependencies	2026-07-10T03:43:54.3025424Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 15.0/15.0 MB 116.8 MB/s  0:00:00
+test	Install dependencies	2026-07-10T03:43:54.3106246Z Downloading ast_serialize-0.6.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+test	Install dependencies	2026-07-10T03:43:54.3212419Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 1.3/1.3 MB 128.5 MB/s  0:00:00
+test	Install dependencies	2026-07-10T03:43:54.3297327Z Downloading librt-0.13.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (515 kB)
+test	Install dependencies	2026-07-10T03:43:54.3412043Z Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+test	Install dependencies	2026-07-10T03:43:54.3506963Z Downloading pathspec-1.1.1-py3-none-any.whl (57 kB)
+test	Install dependencies	2026-07-10T03:43:54.3603012Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+test	Install dependencies	2026-07-10T03:43:54.3708507Z Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+test	Install dependencies	2026-07-10T03:43:54.3836990Z Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+test	Install dependencies	2026-07-10T03:43:54.3931439Z Downloading packaging-26.2-py3-none-any.whl (100 kB)
+test	Install dependencies	2026-07-10T03:43:54.4035010Z Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
+test	Install dependencies	2026-07-10T03:43:54.4122952Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 1.2/1.2 MB 156.4 MB/s  0:00:00
+test	Install dependencies	2026-07-10T03:43:54.4199431Z Downloading types_requests-2.33.0.20260518-py3-none-any.whl (21 kB)
+test	Install dependencies	2026-07-10T03:43:54.4298192Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+test	Install dependencies	2026-07-10T03:43:54.4398525Z Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+test	Install dependencies	2026-07-10T03:43:54.4868263Z Building wheels for collected packages: fixtura
+test	Install dependencies	2026-07-10T03:43:54.4876834Z   Building editable for fixtura (pyproject.toml): started
+test	Install dependencies	2026-07-10T03:43:54.6804557Z   Building editable for fixtura (pyproject.toml): finished with status 'done'
+test	Install dependencies	2026-07-10T03:43:54.6809857Z   Created wheel for fixtura: filename=fixtura-1.0.0-0.editable-py3-none-any.whl size=4002 sha256=e52304d3d93692a0e4fced8bd406697f9f852bd5edb31d7a43ce50eb3680fdf7
+test	Install dependencies	2026-07-10T03:43:54.6811601Z   Stored in directory: /tmp/pip-ephem-wheel-cache-3kn7cwjd/wheels/d9/94/7e/f523cc8c928b70449efce53db3e91f1800b48d39afb4fee77c
+test	Install dependencies	2026-07-10T03:43:54.6825283Z Successfully built fixtura
+test	Install dependencies	2026-07-10T03:43:54.7198808Z Installing collected packages: zstandard, urllib3, typing-extensions, pygments, pluggy, pathspec, packaging, mypy_extensions, librt, iniconfig, idna, charset_normalizer, certifi, ast-serialize, annotated-types, typing-inspection, types-requests, requests, pytest, pydantic-core, mypy, pydantic, fixtura
+test	Install dependencies	2026-07-10T03:43:57.8243392Z 
+test	Install dependencies	2026-07-10T03:43:57.8275247Z Successfully installed annotated-types-0.7.0 ast-serialize-0.6.0 certifi-2026.6.17 charset_normalizer-3.4.9 fixtura-1.0.0 idna-3.18 iniconfig-2.3.0 librt-0.13.0 mypy-2.2.0 mypy_extensions-1.1.0 packaging-26.2 pathspec-1.1.1 pluggy-1.6.0 pydantic-2.13.4 pydantic-core-2.46.4 pygments-2.20.0 pytest-9.1.1 requests-2.34.2 types-requests-2.33.0.20260518 typing-extensions-4.16.0 typing-inspection-0.4.2 urllib3-2.7.0 zstandard-0.25.0
+test	Install dependencies	2026-07-10T03:43:58.3153735Z Collecting anyio
+test	Install dependencies	2026-07-10T03:43:58.3820417Z   Downloading anyio-4.14.1-py3-none-any.whl.metadata (4.6 kB)
+test	Install dependencies	2026-07-10T03:43:58.4677705Z Collecting langsmith
+test	Install dependencies	2026-07-10T03:43:58.4772539Z   Downloading langsmith-0.10.1-py3-none-any.whl.metadata (22 kB)
+test	Install dependencies	2026-07-10T03:43:58.4907412Z Requirement already satisfied: pydantic in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (2.13.4)
+test	Install dependencies	2026-07-10T03:43:58.4910929Z Requirement already satisfied: zstandard in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (0.25.0)
+test	Install dependencies	2026-07-10T03:43:58.4918648Z Requirement already satisfied: idna>=2.8 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from anyio) (3.18)
+test	Install dependencies	2026-07-10T03:43:58.4924691Z Requirement already satisfied: typing_extensions>=4.5 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from anyio) (4.16.0)
+test	Install dependencies	2026-07-10T03:43:58.5060677Z Collecting distro>=1.7.0 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:58.5140177Z   Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+test	Install dependencies	2026-07-10T03:43:58.5325844Z Collecting httpx<1,>=0.23.0 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:58.5406588Z   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+test	Install dependencies	2026-07-10T03:43:58.7433898Z Collecting orjson>=3.9.14 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:58.7514186Z   Downloading orjson-3.11.9-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (41 kB)
+test	Install dependencies	2026-07-10T03:43:58.7600425Z Requirement already satisfied: packaging>=23.2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from langsmith) (26.2)
+test	Install dependencies	2026-07-10T03:43:58.7723549Z Collecting requests-toolbelt>=1.0.0 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:58.7800661Z   Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+test	Install dependencies	2026-07-10T03:43:58.7843427Z Requirement already satisfied: requests>=2.0.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from langsmith) (2.34.2)
+test	Install dependencies	2026-07-10T03:43:58.7949261Z Collecting sniffio>=1.1 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:58.8025025Z   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+test	Install dependencies	2026-07-10T03:43:58.8854218Z Collecting uuid-utils<1.0,>=0.12.0 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:58.8933255Z   Downloading uuid_utils-0.17.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.4 kB)
+test	Install dependencies	2026-07-10T03:43:58.9785736Z Collecting websockets>=15.0 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:58.9867141Z   Downloading websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.8 kB)
+test	Install dependencies	2026-07-10T03:43:59.0833311Z Collecting xxhash>=3.0.0 (from langsmith)
+test	Install dependencies	2026-07-10T03:43:59.0914645Z   Downloading xxhash-3.8.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (15 kB)
+test	Install dependencies	2026-07-10T03:43:59.0973230Z Requirement already satisfied: annotated-types>=0.6.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from pydantic) (0.7.0)
+test	Install dependencies	2026-07-10T03:43:59.0976798Z Requirement already satisfied: pydantic-core==2.46.4 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from pydantic) (2.46.4)
+test	Install dependencies	2026-07-10T03:43:59.0981222Z Requirement already satisfied: typing-inspection>=0.4.2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from pydantic) (0.4.2)
+test	Install dependencies	2026-07-10T03:43:59.0997689Z Requirement already satisfied: certifi in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from httpx<1,>=0.23.0->langsmith) (2026.6.17)
+test	Install dependencies	2026-07-10T03:43:59.1141525Z Collecting httpcore==1.* (from httpx<1,>=0.23.0->langsmith)
+test	Install dependencies	2026-07-10T03:43:59.1221886Z   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+test	Install dependencies	2026-07-10T03:43:59.1380891Z Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.23.0->langsmith)
+test	Install dependencies	2026-07-10T03:43:59.1455900Z   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+test	Install dependencies	2026-07-10T03:43:59.1533367Z Requirement already satisfied: charset_normalizer<4,>=2 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from requests>=2.0.0->langsmith) (3.4.9)
+test	Install dependencies	2026-07-10T03:43:59.1538280Z Requirement already satisfied: urllib3<3,>=1.26 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from requests>=2.0.0->langsmith) (2.7.0)
+test	Install dependencies	2026-07-10T03:43:59.1675524Z Downloading anyio-4.14.1-py3-none-any.whl (124 kB)
+test	Install dependencies	2026-07-10T03:43:59.1841071Z Downloading langsmith-0.10.1-py3-none-any.whl (653 kB)
+test	Install dependencies	2026-07-10T03:43:59.2052854Z    ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü 653.4/653.4 kB 31.0 MB/s  0:00:00
+test	Install dependencies	2026-07-10T03:43:59.2130512Z Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+test	Install dependencies	2026-07-10T03:43:59.2226921Z Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+test	Install dependencies	2026-07-10T03:43:59.2324769Z Downloading uuid_utils-0.17.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (324 kB)
+test	Install dependencies	2026-07-10T03:43:59.2448388Z Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+test	Install dependencies	2026-07-10T03:43:59.2543744Z Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+test	Install dependencies	2026-07-10T03:43:59.2640804Z Downloading orjson-3.11.9-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (133 kB)
+test	Install dependencies	2026-07-10T03:43:59.2737606Z Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+test	Install dependencies	2026-07-10T03:43:59.2832029Z Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+test	Install dependencies	2026-07-10T03:43:59.2926265Z Downloading websockets-16.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (184 kB)
+test	Install dependencies	2026-07-10T03:43:59.3024614Z Downloading xxhash-3.8.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (220 kB)
+test	Install dependencies	2026-07-10T03:43:59.3490592Z Installing collected packages: xxhash, websockets, uuid-utils, sniffio, orjson, h11, distro, anyio, requests-toolbelt, httpcore, httpx, langsmith
+test	Install dependencies	2026-07-10T03:44:00.1277832Z 
+test	Install dependencies	2026-07-10T03:44:00.1295885Z Successfully installed anyio-4.14.1 distro-1.9.0 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 langsmith-0.10.1 orjson-3.11.9 requests-toolbelt-1.0.0 sniffio-1.3.1 uuid-utils-0.17.0 websockets-16.0 xxhash-3.8.1
+test	Install dependencies	2026-07-10T03:44:00.5000922Z Collecting git+https://github.com/yash161004/OpenEval.git@4cb6cfe362c770a7674f5b0111ff54646883709b
+test	Install dependencies	2026-07-10T03:44:00.5005600Z   Cloning https://github.com/yash161004/OpenEval.git (to revision 4cb6cfe362c770a7674f5b0111ff54646883709b) to /tmp/pip-req-build-cga7_6rz
+test	Install dependencies	2026-07-10T03:44:00.5027745Z   Running command git clone --filter=blob:none --quiet https://github.com/yash161004/OpenEval.git /tmp/pip-req-build-cga7_6rz
+test	Install dependencies	2026-07-10T03:44:00.7463730Z   Running command git rev-parse -q --verify 'sha^4cb6cfe362c770a7674f5b0111ff54646883709b'
+test	Install dependencies	2026-07-10T03:44:00.7483015Z   Running command git fetch -q https://github.com/yash161004/OpenEval.git 4cb6cfe362c770a7674f5b0111ff54646883709b
+test	Install dependencies	2026-07-10T03:44:00.8589379Z   Running command git checkout -q 4cb6cfe362c770a7674f5b0111ff54646883709b
+test	Install dependencies	2026-07-10T03:44:00.9598338Z   Resolved https://github.com/yash161004/OpenEval.git to commit 4cb6cfe362c770a7674f5b0111ff54646883709b
+test	Install dependencies	2026-07-10T03:44:00.9635326Z   Installing build dependencies: started
+test	Install dependencies	2026-07-10T03:44:01.6490880Z   Installing build dependencies: finished with status 'done'
+test	Install dependencies	2026-07-10T03:44:01.6496941Z   Getting requirements to build wheel: started
+test	Install dependencies	2026-07-10T03:44:01.7918670Z   Getting requirements to build wheel: finished with status 'done'
+test	Install dependencies	2026-07-10T03:44:01.7927765Z   Preparing metadata (pyproject.toml): started
+test	Install dependencies	2026-07-10T03:44:01.9414047Z   Preparing metadata (pyproject.toml): finished with status 'done'
+test	Install dependencies	2026-07-10T03:44:02.0289740Z Collecting typer (from openeval-core==0.1.2)
+test	Install dependencies	2026-07-10T03:44:02.0908027Z   Downloading typer-0.26.8-py3-none-any.whl.metadata (15 kB)
+test	Install dependencies	2026-07-10T03:44:02.1108624Z Collecting shellingham>=1.3.0 (from typer->openeval-core==0.1.2)
+test	Install dependencies	2026-07-10T03:44:02.1182631Z   Downloading shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+test	Install dependencies	2026-07-10T03:44:02.1489844Z Collecting rich>=13.8.0 (from typer->openeval-core==0.1.2)
+test	Install dependencies	2026-07-10T03:44:02.1563126Z   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+test	Install dependencies	2026-07-10T03:44:02.1733893Z Collecting annotated-doc>=0.0.2 (from typer->openeval-core==0.1.2)
+test	Install dependencies	2026-07-10T03:44:02.1809209Z   Downloading annotated_doc-0.0.4-py3-none-any.whl.metadata (6.6 kB)
+test	Install dependencies	2026-07-10T03:44:02.1976801Z Collecting markdown-it-py>=2.2.0 (from rich>=13.8.0->typer->openeval-core==0.1.2)
+test	Install dependencies	2026-07-10T03:44:02.2050335Z   Downloading markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+test	Install dependencies	2026-07-10T03:44:02.2103560Z Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages (from rich>=13.8.0->typer->openeval-core==0.1.2) (2.20.0)
+test	Install dependencies	2026-07-10T03:44:02.2210146Z Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->openeval-core==0.1.2)
+test	Install dependencies	2026-07-10T03:44:02.2280585Z   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+test	Install dependencies	2026-07-10T03:44:02.2388169Z Downloading typer-0.26.8-py3-none-any.whl (122 kB)
+test	Install dependencies	2026-07-10T03:44:02.2566219Z Downloading annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+test	Install dependencies	2026-07-10T03:44:02.2655057Z Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+test	Install dependencies	2026-07-10T03:44:02.2857480Z Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+test	Install dependencies	2026-07-10T03:44:02.2948724Z Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+test	Install dependencies	2026-07-10T03:44:02.3036140Z Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+test	Install dependencies	2026-07-10T03:44:02.3132041Z Building wheels for collected packages: openeval-core
+test	Install dependencies	2026-07-10T03:44:02.3182292Z   Building wheel for openeval-core (pyproject.toml): started
+test	Install dependencies	2026-07-10T03:44:02.3561874Z   Building wheel for openeval-core (pyproject.toml): finished with status 'done'
+test	Install dependencies	2026-07-10T03:44:02.3566687Z   Created wheel for openeval-core: filename=openeval_core-0.1.2-py3-none-any.whl size=13975 sha256=66949ff6bff0dbad1dab988fddf72267c72b8b166f3658c47325910eef49ffb6
+test	Install dependencies	2026-07-10T03:44:02.3568108Z   Stored in directory: /home/runner/.cache/pip/wheels/b3/0c/c3/444b9c3a3037676a4bed11a7b004bf433cbe322dbbbe00d05f
+test	Install dependencies	2026-07-10T03:44:02.3584743Z Successfully built openeval-core
+test	Install dependencies	2026-07-10T03:44:02.4005031Z Installing collected packages: shellingham, mdurl, annotated-doc, markdown-it-py, rich, typer, openeval-core
+test	Install dependencies	2026-07-10T03:44:02.7890452Z 
+test	Install dependencies	2026-07-10T03:44:02.7909044Z Successfully installed annotated-doc-0.0.4 markdown-it-py-4.2.0 mdurl-0.1.2 openeval-core-0.1.2 rich-15.0.0 shellingham-1.5.4 typer-0.26.8
+test	Run mypy	∩╗┐2026-07-10T03:44:02.8672104Z ##[group]Run mypy . --strict
+test	Run mypy	2026-07-10T03:44:02.8672439Z ^[[36;1mmypy . --strict^[[0m
+test	Run mypy	2026-07-10T03:44:02.8709526Z shell: /usr/bin/bash -e {0}
+test	Run mypy	2026-07-10T03:44:02.8709792Z env:
+test	Run mypy	2026-07-10T03:44:02.8710080Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run mypy	2026-07-10T03:44:02.8710536Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+test	Run mypy	2026-07-10T03:44:02.8710986Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run mypy	2026-07-10T03:44:02.8711368Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run mypy	2026-07-10T03:44:02.8711742Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run mypy	2026-07-10T03:44:02.8712118Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+test	Run mypy	2026-07-10T03:44:02.8712438Z ##[endgroup]
+test	Run mypy	2026-07-10T03:44:07.5349753Z Success: no issues found in 36 source files
+test	Run pytest	∩╗┐2026-07-10T03:44:07.5525194Z ##[group]Run pytest -v
+test	Run pytest	2026-07-10T03:44:07.5526178Z ^[[36;1mpytest -v^[[0m
+test	Run pytest	2026-07-10T03:44:07.5599993Z shell: /usr/bin/bash -e {0}
+test	Run pytest	2026-07-10T03:44:07.5600487Z env:
+test	Run pytest	2026-07-10T03:44:07.5600768Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run pytest	2026-07-10T03:44:07.5601588Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib/pkgconfig
+test	Run pytest	2026-07-10T03:44:07.5602211Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run pytest	2026-07-10T03:44:07.5603551Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run pytest	2026-07-10T03:44:07.5604430Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.15/x64
+test	Run pytest	2026-07-10T03:44:07.5605487Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.15/x64/lib
+test	Run pytest	2026-07-10T03:44:07.5606377Z ##[endgroup]
+test	Run pytest	2026-07-10T03:44:08.8363865Z ============================= test session starts ==============================
+test	Run pytest	2026-07-10T03:44:08.8364934Z platform linux -- Python 3.11.15, pytest-9.1.1, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.11.15/x64/bin/python
+test	Run pytest	2026-07-10T03:44:08.8365855Z cachedir: .pytest_cache
+test	Run pytest	2026-07-10T03:44:08.8366306Z rootdir: /home/runner/work/fixtura-core/fixtura-core
+test	Run pytest	2026-07-10T03:44:08.8366827Z configfile: pyproject.toml
+test	Run pytest	2026-07-10T03:44:08.8367237Z plugins: anyio-4.14.1, langsmith-0.10.1
+test	Run pytest	2026-07-10T03:44:09.0047732Z collecting ... collected 32 items
+test	Run pytest	2026-07-10T03:44:09.0048529Z 
+test	Run pytest	2026-07-10T03:44:09.0063824Z tests/test_openeval_adapter_e2e.py::test_openeval_consistency PASSED     [  3%]
+test	Run pytest	2026-07-10T03:44:09.0075926Z tests/test_openeval_adapter_e2e.py::test_denied_tool_call_scoring PASSED [  6%]
+test	Run pytest	2026-07-10T03:44:09.0086536Z tests/test_openeval_adapter_e2e.py::test_complex_scenario_scoring PASSED [  9%]
+test	Run pytest	2026-07-10T03:44:09.0096632Z tests/test_openeval_adapter_e2e.py::test_self_correction_scoring PASSED  [ 12%]
+test	Run pytest	2026-07-10T03:44:09.0108639Z tests/test_openeval_adapter_e2e.py::test_openeval_import_failure PASSED  [ 15%]
+test	Run pytest	2026-07-10T03:44:09.0117122Z tests/test_rate_limiter.py::test_rate_limiter_session_limit PASSED       [ 18%]
+test	Run pytest	2026-07-10T03:44:09.0124338Z tests/test_rate_limiter.py::test_rate_limiter_window_limit PASSED        [ 21%]
+test	Run pytest	2026-07-10T03:44:09.0132031Z tests/test_rate_limiter.py::test_circuit_breaker PASSED                  [ 25%]
+test	Run pytest	2026-07-10T03:44:09.0157590Z tests/test_rate_limiter.py::test_e2e_rate_limit_recording PASSED         [ 28%]
+test	Run pytest	2026-07-10T03:44:09.0170522Z tests/test_recorder.py::test_recorder_zstd_compression PASSED            [ 31%]
+test	Run pytest	2026-07-10T03:44:09.0488422Z tests/test_recorder.py::test_recorder_concurrency PASSED                 [ 34%]
+test	Run pytest	2026-07-10T03:44:09.0510175Z tests/test_replay.py::test_trace_validation PASSED                       [ 37%]
+test	Run pytest	2026-07-10T03:44:09.0524567Z tests/test_replay.py::test_monotonic_step_id PASSED                      [ 40%]
+test	Run pytest	2026-07-10T03:44:09.0543091Z tests/test_replay.py::test_passive_replay_no_live_calls PASSED           [ 43%]
+test	Run pytest	2026-07-10T03:44:09.0556475Z tests/test_replay.py::test_passive_replay_exception_handling PASSED      [ 46%]
+test	Run pytest	2026-07-10T03:44:09.0569724Z tests/test_replay.py::test_step_inspection PASSED                        [ 50%]
+test	Run pytest	2026-07-10T03:44:09.0576057Z tests/test_sanitizer.py::test_nested_secret PASSED                       [ 53%]
+test	Run pytest	2026-07-10T03:44:09.0605696Z tests/test_sanitizer.py::test_redact_then_truncate_boundary PASSED       [ 56%]
+test	Run pytest	2026-07-10T03:44:09.0620701Z tests/test_sanitizer.py::test_multibyte_truncation PASSED                [ 59%]
+test	Run pytest	2026-07-10T03:44:09.0643741Z tests/test_sanitizer.py::test_llm_call_specific_limits PASSED            [ 62%]
+test	Run pytest	2026-07-10T03:44:09.0653640Z tests/test_security.py::test_filesystem_permission PASSED                [ 65%]
+test	Run pytest	2026-07-10T03:44:09.0659688Z tests/test_security.py::test_db_permission PASSED                        [ 68%]
+test	Run pytest	2026-07-10T03:44:09.0669980Z tests/test_security.py::test_http_permission PASSED                      [ 71%]
+test	Run pytest	2026-07-10T03:44:09.0677495Z tests/test_tools.py::test_filesystem_schema_validation PASSED            [ 75%]
+test	Run pytest	2026-07-10T03:44:09.0692151Z tests/test_tools.py::test_filesystem_sandbox_traversal PASSED            [ 78%]
+test	Run pytest	2026-07-10T03:44:09.0705989Z tests/test_tools.py::test_filesystem_symlink_escape PASSED               [ 81%]
+test	Run pytest	2026-07-10T03:44:09.0712214Z tests/test_tools.py::test_sqlite_schema_validation PASSED                [ 84%]
+test	Run pytest	2026-07-10T03:44:09.0766360Z tests/test_tools.py::test_sqlite_injection_neutralization PASSED         [ 87%]
+test	Run pytest	2026-07-10T03:44:09.0777777Z tests/test_tools.py::test_http_allowlist PASSED                          [ 90%]
+test	Run pytest	2026-07-10T03:44:09.0789012Z tests/test_tools.py::test_http_ssrf_protection PASSED                    [ 93%]
+test	Run pytest	2026-07-10T03:44:09.0817825Z tests/test_tools.py::test_http_dns_rebinding PASSED                      [ 96%]
+test	Run pytest	2026-07-10T03:44:09.1221167Z tests/test_tools.py::test_http_concurrency PASSED                        [100%]
+test	Run pytest	2026-07-10T03:44:09.1221575Z 
+test	Run pytest	2026-07-10T03:44:09.1221752Z ============================== 32 passed in 0.25s ==============================
+test	Post Set up Python 3.11	∩╗┐2026-07-10T03:44:09.2167442Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test	Post Set up Python 3.11	2026-07-10T03:44:09.2168915Z Post job cleanup.
+test	Post Set up Python 3.11	2026-07-10T03:44:09.3404070Z (node:2525) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Post Set up Python 3.11	2026-07-10T03:44:09.3405213Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Post Run actions/checkout@v4	∩╗┐2026-07-10T03:44:09.3633532Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.3635611Z Post job cleanup.
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.4537047Z [command]/usr/bin/git version
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.4579197Z git version 2.54.0
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.4615506Z Temporarily overriding HOME='/home/runner/work/_temp/3370c216-7dd7-422d-bbb8-5b27fd9f2c41' before making global git config changes
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.4645678Z Adding repository directory to the temporary git global config as a safe directory
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.4646976Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/fixtura-core/fixtura-core
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.4664693Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.4725390Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.5004478Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.5037501Z http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.5048961Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.5086013Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.5443851Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Post Run actions/checkout@v4	2026-07-10T03:44:09.5464861Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Complete job	∩╗┐2026-07-10T03:44:09.6002491Z Cleaning up orphan processes
+test	Complete job	2026-07-10T03:44:09.6304829Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

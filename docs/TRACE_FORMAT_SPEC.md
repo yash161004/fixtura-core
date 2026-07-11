@@ -2,6 +2,18 @@
 
 Every `.trace` file is JSONL (one JSON object per line), one line per event. This format must be convertible to OpenEval's `AgentTrace` object via the adapter in `docs/PHASE_1_INSTRUCTIONS.md`'s later phases — treat this as the contract between Fixtura and OpenEval.
 
+## Trace header event (v1.1)
+
+Written once as the very first line of a trace file if it is a Live Branch.
+
+```json
+{
+  "event_type": "trace_header",
+  "parent_trace_id": "string",
+  "divergence_step_id": "string"
+}
+```
+
 ## LLM step event
 
 ```json
@@ -32,8 +44,8 @@ Every `.trace` file is JSONL (one JSON object per line), one line per event. Thi
   "tool_name": "string",
   "arguments": "object (sanitized)",
   "validated_arguments": "object (post-schema-validation, only if different from arguments)",
-  "permission_decision": "allowed | denied",
-  "permission_reason": "string, required if denied",
+  "permission_decision": "allowed | denied | validation_error",
+  "permission_reason": "string, required if denied or validation_error",
   "rate_limit_decision": "allowed | rate_limited | circuit_broken (optional)",
   "rate_limit_reason": "string, required if rejected (optional)",
   "response": "object | null (sanitized, null if denied)",

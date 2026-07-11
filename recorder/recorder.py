@@ -6,11 +6,23 @@ from pathlib import Path
 from recorder.sanitizer import Sanitizer
 
 class ExecutionRecorder:
-    def __init__(self, trace_file: Union[str, Path]) -> None:
+    def __init__(self, trace_file: Union[str, Path], parent_trace_id: str | None = None, divergence_step_id: str | None = None) -> None:
         self.trace_file = Path(trace_file)
         self.sanitizer = Sanitizer()
         self._lock = threading.Lock()
         self._step_counter = 1
+        
+        if parent_trace_id and divergence_step_id:
+            header = {
+                "event_type": "trace_header",
+                "parent_trace_id": parent_trace_id,
+                "divergence_step_id": divergence_step_id
+            }
+            sanitized = self.sanitizer.sanitize(header)
+            line = json.dumps(sanitized) + "\n"
+            cctx = zstd.ZstdCompressor()
+            with open(self.trace_file, "ab") as f:
+                f.write(cctx.compress(line.encode("utf-8")))
 
     def record_event(self, event: Dict[str, Any]) -> None:
         """

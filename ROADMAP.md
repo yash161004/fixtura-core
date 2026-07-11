@@ -21,14 +21,16 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 
 ## v1.1 — Postponed (do not start until v1 passes all acceptance tests)
 
-- Counterfactual replay / branching
+- **Counterfactual replay / branching:** 
+  - Phase A (Storage schema & TraceReader): ✅ Completed.
+  - Phase B (Live execution & security enforcement): Not started.
 - Incident report generation (deterministic format — no fabricated confidence scores)
 - Automatic failure classification (Layer 1 infra failures only are automatic; Layer 2–4 require benchmark-defined expected trajectories or manual review)
 - Rate limiting / circuit breakers
 - Advanced metrics
 - **Retrospective / Security Review:** Completed. AGENTS.md autonomous bindings have been officially restricted to read-only operations for v1.1.
 - **CI Setup / Symlink Verification:** Completed. GitHub Actions workflow established and path traversal symlink defense natively verified on Linux.
-- **Packaging/Distribution:** Completed. AT5 verified against the real published package.
+- **Packaging/Distribution:** ✅ Completed. AT5 verified against real PyPI `fixtura==1.0.6`. `permission_reason` spec compliant.
 
 ## v2 — Future work, not scoped in detail
 

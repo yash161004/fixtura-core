@@ -45,6 +45,12 @@ The core assumption: **LLM-generated tool call arguments are untrusted input**, 
 - Formal verification of the permission engine (property-based/adversarial testing is a stretch goal, not a v1 commitment)
 - Cross-platform native verification of path traversal defenses (specifically: symlink-based escape vectors are skipped on Windows but are now natively verified on Ubuntu CI runners [Run ID: 29064515592, Date: 2026-07-10])
 
+## Phase B (Live Branch) Stated Risks
+
+- **Quota Laundering Gap:** Because each branch is treated as a fresh session, repeated manual branching allows the agent to reset its rate-limiter quota. This gap must be re-evaluated and solved before any multi-tenant or cost-governed deployment.
+- **Orphaned Branch Data Loss:** If a parent trace gets deleted (via manual cleanup or retention policy) while a branch still references it via `parent_trace_id`, every dependent branch becomes permanently unreadable. `MissingParentTraceError` handles the read-time symptom correctly, but does not prevent the underlying data loss. This must be solved before retention policy is automated/scheduled.
+- **Standing Live Credentials:** Phase B will require standing live credentials wherever it runs, which is a materially different trust boundary than Passive Replay's file-only requirement. Do not let Phase B start without recognizing this shift in the boundary.
+
 Stating these explicitly is intentional — a threat model that claims to solve everything is less credible than one that names its real boundaries.
 
 ## Verification requirement

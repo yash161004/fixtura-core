@@ -1,12 +1,13 @@
 import os
 from pprint import pprint
 
-from tools.openeval_adapter import trace_to_agent_trace
-from openeval.runner import run_eval
-from openeval.models import EvalTestCase
-from openeval.metrics import ToolSelectionAccuracy, ArgumentCorrectness, StepEfficiency, GoalCompletionRate
 
 def run(trace_path: str) -> None:
+    from tools.openeval_adapter import trace_to_agent_trace
+    from openeval.runner import run_eval
+    from openeval.models import EvalTestCase
+    from openeval.metrics import ToolSelectionAccuracy, ArgumentCorrectness, StepEfficiency, GoalCompletionRate
+
     print(f"Scoring {trace_path} via OpenEval adapter...")
     metrics = [
         ToolSelectionAccuracy(),
