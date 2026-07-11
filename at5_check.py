@@ -4,7 +4,7 @@ import json
 from recorder.recorder import ExecutionRecorder
 from security.permission_engine import CapabilityToken, check
 
-def main():
+def main() -> None:
     trace_path = "at5_final.trace"
     if os.path.exists(trace_path):
         os.remove(trace_path)
