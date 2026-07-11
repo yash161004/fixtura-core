@@ -28,7 +28,7 @@ def sample_trace(tmp_path: Path) -> Path:
         "timestamp": "2026-07-06T00:00:01Z",
         "step_id": "step2",
         "tool_name": "http_tool",
-        "arguments": {"url": "http://example.com"},
+        "arguments": {"url": "http://example.com", "api_key": "super_secret"},
         "permission_decision": "allowed",
         "response": {"status": 200},
         "latency_ms": 150
@@ -61,10 +61,10 @@ def test_cli_viewer(sample_trace: Path, capsys: pytest.CaptureFixture[str], monk
     captured = capsys.readouterr()
     stdout = captured.out
 
-    # 1. Check order/steps
-    assert "Step 1 [step1] | Type: \x1b[96mllm_call" in stdout
-    assert "Step 2 [step2] | Type: \x1b[96mtool_call" in stdout
-    assert "Step 3 [step3] | Type: \x1b[96mtool_call" in stdout
+    # 1. Check order/steps (including ANSI colors)
+    assert "\x1b[1mStep 1 [step-000001]\x1b[0m | Type: \x1b[96mllm_call" in stdout
+    assert "\x1b[1mStep 2 [step-000002]\x1b[0m | Type: \x1b[96mtool_call" in stdout
+    assert "\x1b[1mStep 3 [step-000003]\x1b[0m | Type: \x1b[96mtool_call" in stdout
 
     # 2. Check tool names
     assert "Tool:\x1b[0m \x1b[93mhttp_tool\x1b[0m" in stdout
@@ -96,10 +96,10 @@ def test_html_viewer(sample_trace: Path, tmp_path: Path, monkeypatch: pytest.Mon
     html_content = out_html.read_text(encoding="utf-8")
     
     # 1. Check order/steps
-    assert "Step 1 [step1]" in html_content
+    assert "Step 1 [step-000001]" in html_content
     assert "Type: llm_call" in html_content
-    assert "Step 2 [step2]" in html_content
-    assert "Step 3 [step3]" in html_content
+    assert "Step 2 [step-000002]" in html_content
+    assert "Step 3 [step-000003]" in html_content
     
     # 2. Check tool names
     assert '<span class="tool-name">http_tool</span>' in html_content
