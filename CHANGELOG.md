@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.6] - 2026-07-11
 ### Fixed
 - Fixed failing tests introduced by backward compatibility trace validations.
+*(Note: Versions 1.0.3, 1.0.4, and 1.0.5 were built locally/pushed to CI but failed checks, and were superseded before release.)*
 
 ## [1.0.5] - 2026-07-11
 ### Fixed

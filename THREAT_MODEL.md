@@ -36,6 +36,8 @@ The core assumption: **LLM-generated tool call arguments are untrusted input**, 
 | Replay accidentally executing real side effects (double-write, duplicate API call) | Replay Runtime never invokes the real Tool Executor — every LLM completion and tool response is substituted from the recording, full stop |
 | Runaway agent loop hammering a real tool | Cross-cutting rate limiter per-session and per-time-window, plus consecutive-failure circuit breaker to abort tool usage automatically. |
 
+**Important Note on Sanitization:** The Sanitizer's pattern-based redaction (Regex Pass 3) is *not* a guaranteed catch-all for arbitrary, unstructured exception text. Structured error formatting at the source (e.g., stripping `input_value` and contexts from Pydantic `ValidationError`s before they reach the recorder) is the primary mitigation. Assuming the Sanitizer alone is sufficient for arbitrary error dumps is a known anti-pattern.
+
 ## Explicitly out of scope for v1
 
 - Enterprise-grade DLP (the sanitizer is a stated, simple redact/truncate policy — not a claim of comprehensive data-loss prevention)
