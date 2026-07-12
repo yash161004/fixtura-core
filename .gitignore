@@ -1,6 +1,11 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
+_check/
+test.db
+test.txt
+*.trace
+latest_runs.json
 *$py.class
 
 # pytest
