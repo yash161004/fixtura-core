@@ -1,3 +1,22 @@
+Metadata-Version: 2.4
+Name: fixtura
+Version: 1.0.6
+Summary: Deterministic execution recording and replay for AI agents
+Author: Yashrajsinh Rathod
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic<3.0,>=2.0
+Requires-Dist: requests<3.0,>=2.0
+Requires-Dist: zstandard<1.0,>=0.20
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: types-requests>=2.0; extra == "dev"
+Provides-Extra: eval
+Dynamic: license-file
+
 # Fixtura
 
 **Deterministic execution recording and replay for AI agents — turn real agent runs into regression tests.**
@@ -11,13 +30,6 @@ It's built to work with **OpenEval**, a deterministic (non-LLM-judge) agent eval
 ## Why this exists
 
 Most "agent observability" tools (Langfuse, Phoenix, Braintrust, Laminar) are built for production monitoring at scale. Fixtura's angle is narrower and more testable: **recorded traces as literal test fixtures**, replayable offline, usable to gate pull requests the same way unit test snapshots do. See ARCHITECTURE.md for why this is scoped the way it is, and what was deliberately cut.
-
-## Quickstart
-
-```bash
-pip install fixtura
-python quickstart.py
-```
 
 ## Status
 
