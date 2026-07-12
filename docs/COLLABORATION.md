@@ -1,4 +1,4 @@
-ï»¿# Collaboration model
+# Collaboration model
 
 ## Roles
 
@@ -23,3 +23,4 @@ Either owner can approve or override a decision; genuine disagreements between t
 4. Implement against the approved doc.
 5. Review the output against the phase's stated acceptance criteria â€” real test output, verified CI run â€” before marking it done.
 6. Repeat for the next roadmap item â€” never skip ahead to a different idea without updating the roadmap first.
+* **Antigravity acts only on an approved command document** — never on a suggestion made in conversation, regardless of Antigravity's own assessment of risk or scope. This applies to all file changes, including workflow files, dependency manifests, and CI configuration, and applies equally to "fixing" a failure encountered mid-task. If a task fails or reveals a needed follow-up, Antigravity reports the failure and proposes a fix — it does not implement the fix — and waits for a new approved command document.
