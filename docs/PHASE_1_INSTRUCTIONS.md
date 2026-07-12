@@ -1,4 +1,4 @@
-# Phase 1 Instructions — for Antigravity
+# Phase 1 Instructions
 
 **Read `ARCHITECTURE.md`, `THREAT_MODEL.md`, and `TRACE_FORMAT_SPEC.md` before starting. This document is the command; those are the design contract.**
 

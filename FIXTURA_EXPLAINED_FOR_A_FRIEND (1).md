@@ -45,12 +45,11 @@ Once the scope was cut, it got **frozen in writing** (`ROADMAP.md`) specifically
 
 ## 4. How the team works (so you know what to expect)
 
-Four roles:
+Two owners, equal standing:
 
-- **Owner (Yashrajsinh)** — makes every final call. Nothing ships without sign-off.
-- **Claude & ChatGPT** — do architecture review and write precise build instructions. Neither writes the actual application code.
-- **Antigravity** — the AI coding agent that actually implements things, working strictly from written phase instructions.
-- **You** — implementing the two phases still left.
+- **Yashrajsinh** and **Meet** — both make final calls. Nothing ships without sign-off from the project's owners.
+
+Implementation work happens against written phase instructions, reviewed against the same evidence standard every time — see the rule below.
 
 The review process has one hard rule that's been enforced strictly every phase so far: **nothing counts as "done" from a description.** Every claim of "tests pass" gets backed by pasting the actual, unabridged test output and often the actual source code — not a summary of it. This caught real bugs at every single phase. Whoever reviews your work needs to keep applying this same standard, or bugs that would've been caught early will slip through instead.
 

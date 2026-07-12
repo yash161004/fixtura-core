@@ -34,7 +34,7 @@ Without this, `pip install fixtura` will give you the core recording, permission
 | THREAT_MODEL.md | Trust boundaries, what could go wrong, mitigations |
 | ROADMAP.md | Frozen v1 scope table + acceptance tests + v1.1/v2 future work |
 | docs/TRACE_FORMAT_SPEC.md | Exact schema every recording must produce |
-| docs/COLLABORATION.md | How the owner, Claude, ChatGPT, and Antigravity work together on this project |
+| docs/COLLABORATION.md | How the project's owners work together |
 
 ## Core components
 
