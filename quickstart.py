@@ -4,7 +4,7 @@ from cli.record import run as record_run
 from cli.replay import run as replay_run
 from replay.step_inspector import StepInspector
 
-def main():
+def main() -> None:
     print("Fixtura Quickstart")
     print("==================")
     

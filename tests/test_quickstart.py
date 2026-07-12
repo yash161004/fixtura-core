@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-def test_quickstart_runs_successfully():
+def test_quickstart_runs_successfully() -> None:
     """
     Test that the quickstart script runs end-to-end without error,
     exits with code 0, and outputs evidence of record, replay, 
