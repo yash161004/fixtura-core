@@ -37,6 +37,9 @@ Anything not in the v1 table below is out of scope until v1 ships and all six ac
 - **Retrospective / Security Review:** Completed. AGENTS.md autonomous bindings have been officially restricted to read-only operations for v1.1.
 - **CI Setup / Symlink Verification:** Completed. GitHub Actions workflow established and path traversal symlink defense natively verified on Linux.
 - **Packaging/Distribution:** ✅ Completed. AT5 verified against real PyPI `fixtura==1.0.6`. `permission_reason` spec compliant. OpenEval adapter successfully packaged via `[eval]` extra and CI-verified.
+- **Fixtura Cloud (CI Cache & Test Analytics):**
+  - Scope: A hosted dashboard (Cypress Dashboard model) that aggregates offline `.trace` artifacts from CI runs to track regression trends and permission failure rates across branches. Explicitly does NOT host live LLM execution or compete with production observability platforms like Braintrust/Langfuse.
+  - Gate: Do not write any code or draft detailed specs until the open-source launch produces explicit user demand (e.g., N users requesting cross-run trace aggregation or GitHub Actions retention management in issues).
 
 ## v2 — Future work, not scoped in detail
 
